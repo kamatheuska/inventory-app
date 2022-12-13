@@ -5,16 +5,16 @@ import Movement from '../../src/movements/movement.model'
 import StorageItem from '../../src/storageItems/storage-item.model'
 import { IStorageItem } from '../../src/storageItems/storage-item.types'
 import { IMovement } from '../../src/movements/movement.types'
-import { Types } from 'mongoose'
+import { Model, Types } from 'mongoose'
 
 async function cleanDb() {
   await Movement.deleteMany({})
   await StorageItem.deleteMany({})
 }
 
-async function fetchEntity(Model: any, filter: any) {
-  const count = await Model.countDocuments()
-  const instance = await Model.findOne(filter)
+async function fetchEntity<T>(Entity: Model<T>, filter: any) {
+  const count = await Entity.countDocuments()
+  const instance = await Entity.findOne(filter)
   if (instance) {
     return {
       count,
@@ -50,20 +50,92 @@ test('Movements: POST /api/movements/new', async (t) => {
     const itemCount = itemEntity.count;
     
     t.equal(item.amount, movements[0].amount, 'should have the same amount as in the passed movement')
-    t.equal(itemCount, 1, 'should have only one document on the collection')
+    t.equal(itemCount, 1, 'should have only one document on the StorageItem collection')
   
     const movementEntity = await fetchEntity(Movement, { ingredientId: movements[0].ingredientId })
     const movement = movementEntity.instance as unknown as IMovement;
     const movementCount = movementEntity.count;
     
     t.equal(movement.amount, movements[0].amount, 'should have the same amount as in the passed movement')
-    t.equal(movementCount, 1, 'should have only one document on the collection')
+    t.equal(movementCount, 1, 'should have only one document on the Movement collection')
     
     t.equal(res.statusCode, 200, 'returns a statusCode of 200')
   } catch (error) {
     t.error(error)
   } finally {
     t.end()
+  }
+})
+test('Movements: POST /api/movements/new to an existing StorageItem', async (t) => {
+  const app = await build()
+  const movements = getMockedMovements();
+
+  t.teardown(async () => {
+    await cleanDb()
+    await app.close()
+  })
+
+  try {
+    const res = await app.inject({
+      url: '/api/movements/new',
+      method: 'POST',
+      payload: movements[0],
+      headers: {
+        ['content-type']: 'application/json'
+      }
+    })
+  
+    const itemEntity = await fetchEntity(StorageItem, { ingredientId: movements[0].ingredientId })
+    const item = itemEntity.instance as unknown as IStorageItem;
+    const itemCount = itemEntity.count;
+    
+    t.equal(item.amount, movements[0].amount, 'should have the same amount as in the passed movement')
+    t.equal(itemCount, 1, 'should have only one document on the StorageItem collection')
+  
+    const movementEntity = await fetchEntity(Movement, { ingredientId: movements[0].ingredientId })
+    const movement = movementEntity.instance as unknown as IMovement;
+    const movementCount = movementEntity.count;
+    
+    t.equal(movement.amount, movements[0].amount, 'should have the same amount as in the passed movement')
+    t.equal(movementCount, 1, 'should have only one document on the Movement collection')
+    
+    t.equal(res.statusCode, 200, 'returns a statusCode of 200')
+  } catch (error) {
+    t.error(error)
+  }
+
+  try {
+    const payload: IMovement =  {
+      ...movements[0],
+      amount: 2000,
+    }
+
+    const res = await app.inject({
+      url: '/api/movements/new',
+      method: 'POST',
+      payload,
+      headers: {
+        ['content-type']: 'application/json'
+      }
+    })
+  
+    const itemEntity = await fetchEntity(StorageItem, { ingredientId: movements[0].ingredientId })
+    const item = itemEntity.instance as unknown as IStorageItem;
+    const itemCount = itemEntity.count;
+    
+    t.equal(item.amount, 2000, 'should have the new amount')
+    t.equal(itemCount, 1, 'should have only one document on the StorageItem collection')
+
+    const count = await Movement.countDocuments()
+    const movement = await Movement.find({ ingredientId: movements[0].ingredientId }).exec();
+    if (!movement) {
+      throw new Error('storage item not found')
+    }  
+    t.equal(count, 2, 'should have two documents on the Movement collection')
+    
+    t.equal(res.statusCode, 200, 'returns a statusCode of 200')
+  } catch (error) {
+    t.error(error)
   }
 })
 
