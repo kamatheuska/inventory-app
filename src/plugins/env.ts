@@ -1,15 +1,15 @@
 import fp from 'fastify-plugin'
 import Env, { FastifyEnvOptions } from '@fastify/env'
-import S from 'fluent-json-schema'
+import { Type } from '@sinclair/typebox'
+
 import { AppConfig } from '../app.types'
 
 export default fp<FastifyEnvOptions>(async (fastify) => {
-  
   await fastify.register(Env, {
-    schema: S.object()
-      .prop('NODE_ENV', S.string().required())
-      .prop('MONGODB_URI', S.string().required())
-      .valueOf()
+    schema: Type.Object({
+      NODE_ENV: Type.String(),
+      MONGODB_URI: Type.String(),
+    })
   })
 })
 

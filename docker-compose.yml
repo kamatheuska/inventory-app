@@ -5,6 +5,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: Pauper-Routine-Sneer3-Broiler
+    restart: unless-stopped
     ports:
       - 27017:27017
     volumes:

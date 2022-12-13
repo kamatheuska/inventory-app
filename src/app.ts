@@ -4,11 +4,12 @@ import { FastifyPluginAsync } from 'fastify';
 import AutoLoad from '@fastify/autoload';
 
 import { AppOptions, LoggerOptions } from './app.types';
+import movementPlugin from './movements/movement.plugin';
 
 // Pass --options via CLI arguments in command to enable these options.
 function getOptions (): AppOptions {
   let loggerOptions: LoggerOptions = true;
-
+  
   if (process.env.NODE_ENV === 'development') {
     loggerOptions = {
       transport: {
@@ -32,6 +33,8 @@ const app: FastifyPluginAsync<AppOptions> = async (fastify, opts) => {
     dir: join(__dirname, 'plugins'),
     options: opts
   })
+
+  await fastify.register(movementPlugin);
 };
 
 export default app;

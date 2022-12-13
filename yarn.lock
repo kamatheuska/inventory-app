@@ -1006,7 +1006,7 @@
   dependencies:
     pkg-up "^3.1.0"
 
-"@fastify/deepmerge@^1.0.0", "@fastify/deepmerge@^1.1.0", "@fastify/deepmerge@^1.2.0":
+"@fastify/deepmerge@^1.0.0", "@fastify/deepmerge@^1.2.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@fastify/deepmerge/-/deepmerge-1.3.0.tgz#8116858108f0c7d9fd460d05a7d637a13fe3239a"
   integrity sha512-J8TOSBq3SoZbDhM9+R/u77hP93gz/rajSA+K2kGyijPpORPWUXHUpTaleoj+92As0S9uPRP7Oi8IqMf0u+ro6A==
@@ -1123,6 +1123,11 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@sinclair/typebox@^0.25.13":
+  version "0.25.13"
+  resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.25.13.tgz#c12956684a9c57271bdf10e4686b8f85531f75af"
+  integrity sha512-XiEwzYpUwE5y/k333Cy0Ujmxvw/mA4zIyEmwUyA0EDDik7ba8S/HClvz3ylOsABfYSj+/skQq4QJl0k/Z1eDLg==
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.9.tgz#df4907fc07a886922637b15e02d4cebc4c0021b2"
@@ -1142,6 +1147,18 @@
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
+
+"@types/debug@^4.1.7":
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.7.tgz#7cc0ea761509124709b8b2d1090d8f6c17aadb82"
+  integrity sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==
+  dependencies:
+    "@types/ms" "*"
+
+"@types/ms@*":
+  version "0.7.31"
+  resolved "https://registry.yarnpkg.com/@types/ms/-/ms-0.7.31.tgz#31b7ca6407128a3d2bbc27fe2d21b345397f6197"
+  integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
 "@types/node@*", "@types/node@^18.0.0":
   version "18.11.13"
@@ -1685,7 +1702,7 @@ dateformat@^4.6.3:
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-4.6.3.tgz#556fa6497e5217fedb78821424f8a1c22fa3f4b5"
   integrity sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==
 
-debug@4.x, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1:
+debug@4.x, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -1951,13 +1968,6 @@ findit@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/findit/-/findit-2.0.0.tgz#6509f0126af4c178551cfa99394e032e13a4d56e"
   integrity sha512-ENZS237/Hr8bjczn5eKuBohLgaD0JyUd0arxretR1f9RO46vZHA1b2y0VorgGV3WaOT3c+78P8h7v4JGJ1i/rg==
-
-fluent-json-schema@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/fluent-json-schema/-/fluent-json-schema-4.0.0.tgz#8f783e2282731e893c9480d8b9263b47c7ce87d4"
-  integrity sha512-NE7QBhwu+cK+X9XhuWt9S5YpOqRKjwTbBhg/PHaLrEsaog3cgHMbu7Xuqbks8QYOv6bVQPM6zDEqXoI8dP8dwg==
-  dependencies:
-    "@fastify/deepmerge" "^1.1.0"
 
 foreground-child@^2.0.0:
   version "2.0.0"
@@ -2554,9 +2564,9 @@ node-preload@^0.2.1:
     process-on-spawn "^1.0.0"
 
 node-releases@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.6.tgz#8a7088c63a55e493845683ebf3c828d8c51c5503"
-  integrity sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.7.tgz#593edbc7c22860ee4d32d3933cfebdfab0c0e0e5"
+  integrity sha512-EJ3rzxL9pTWPjk5arA0s0dgXpnyiAbJDE6wHT62g7VsgrgQgmmZ+Ru++M1BFofncWja+Pnn3rEr3fieRySAdKQ==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
@@ -3229,7 +3239,7 @@ tap-yaml@^1.0.0, tap-yaml@^1.0.2:
   dependencies:
     yaml "^1.10.2"
 
-tap@^16.1.0:
+tap@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/tap/-/tap-16.3.2.tgz#84350bce6fbe490f1befbcd53d5caddb8892feac"
   integrity sha512-4MWMObR8unbv5gAHHVW9F0MNk3opQMnLusSWvt4KBAnKmkwpBRKIfNF64fimQbcR4y9a7U9ISV7pCldlV3J8Pw==
