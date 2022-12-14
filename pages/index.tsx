@@ -1,31 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux'
+import { useFetchIngredients } from '../lib/ingredients/ingredients.hooks';
 
-import { getAllIngredients } from '../lib/ingredients/ingredients.rest';
-import { setIngredientsList } from '../lib/ingredients/ingredientSlice';
 import AddMovementForm from '../lib/movements/components/add-movement'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const [isLoading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchIngredients = async () => {
-      setLoading(true);
-      const list = await getAllIngredients();
-
-      dispatch(setIngredientsList(list));
-    }
-
-    fetchIngredients()
-      .catch(console.error)
-      .finally(() => {
-        setLoading(false);
-      })
-  }, [dispatch])
+  const isLoading = useFetchIngredients();
   
   return (
     <div className={styles.container}>

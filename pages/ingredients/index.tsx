@@ -1,29 +1,10 @@
 import Head from 'next/head'
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import ListIngredients from '../../lib/ingredients/components/list-ingredients'
-import { getAllIngredients } from '../../lib/ingredients/ingredients.rest';
-import { setIngredientsList } from '../../lib/ingredients/ingredientSlice';
+import { useFetchIngredients } from '../../lib/ingredients/ingredients.hooks';
 import styles from '../../styles/Ingredients.module.css'
 
 export default function Ingredients() {
-  const [isLoading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchIngredients = async () => {
-      setLoading(true);
-      const list = await getAllIngredients();
-
-      dispatch(setIngredientsList(list));
-    }
-
-    fetchIngredients()
-      .catch(console.error)
-      .finally(() => {
-        setLoading(false);
-      })
-  }, [dispatch])
+  const isLoading = useFetchIngredients();
   
   return (
     <div className={styles.container}>
