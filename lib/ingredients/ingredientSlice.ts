@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IIngredients } from "./ingredients.types";
+import { IIngredient } from "./ingredients.types";
 
 export interface IngredientsState {
-  list: IIngredients[],
+  list: IIngredient[],
 }
 
 const initialState: IngredientsState = {
@@ -13,7 +13,7 @@ export const ingredientSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
-    setIngredientsList(state, action: PayloadAction<IIngredients[]>) {
+    setIngredientsList(state, action: PayloadAction<IIngredient[]>) {
       state.list = action.payload;
     }
   }

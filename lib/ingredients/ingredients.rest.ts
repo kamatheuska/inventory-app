@@ -1,7 +1,7 @@
 import request from "../utils/rest";
-import { IIngredients } from "./ingredients.types";
+import { IIngredient } from "./ingredients.types";
 
-export async function getAllIngredients(): Promise<IIngredients[]> {
+export async function getAllIngredients(): Promise<IIngredient[]> {
   const data = await request({
     endpoint: '/api/ingredients',
     headers: {

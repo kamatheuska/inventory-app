@@ -1,4 +1,4 @@
-export interface IIngredients {
+export interface IIngredient {
   name: string,
   measureUnit: MeasureUnitOptions,
   category: string,
