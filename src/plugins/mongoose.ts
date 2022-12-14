@@ -1,19 +1,8 @@
 import mongoose from 'mongoose';
 import fp from 'fastify-plugin';
 import { MongooseDecorator } from '../app.types';
-import { FastifyBaseLogger, FastifyInstance } from 'fastify';
-// import { FastifyInstance } from 'fastify';
-
-export async function connectToDatabase(uri: string, logger: FastifyBaseLogger) {
-  logger.info('Start connection to MongoDB');
-
-  mongoose.set('strictQuery', true);
-  const instance = await mongoose.connect(uri);
-
-  logger.info('Connected succesfully to mongodb database');
-
-  return instance.connection;
-}
+import { FastifyInstance } from 'fastify';
+import { connectToDatabase } from '../lib/db/connect';
 
 export default fp(async function mongooseConnector(fastify) {
   const {
@@ -37,7 +26,9 @@ export default fp(async function mongooseConnector(fastify) {
   fastify.addHook('onClose', closeConnection);
   fastify.decorate('mongoose', mongooseDecorator);
 
-  await connectToDatabase(config.MONGODB_URI, log);
+  log.info('Start connection to MongoDB');
+  await connectToDatabase(config.MONGODB_URI);
+  log.info('Connected succesfully to mongodb database');
 }, {
   name: 'mongooseConnector',
 });

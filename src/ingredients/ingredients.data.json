@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Apple",
+    "category": "fruits"
+  },
+  {
+    "name": "Apricot",
+    "category": "fruits"
+  },
+  {
+    "name": "Avocado",
+    "category": "fruits"
+  },
+  {
+    "name": "Banana",
+    "category": "fruits"
+  },
+  {
+    "name": "Blackberry",
+    "category": "fruits"
+  },
+  {
+    "name": "Blueberry",
+    "category": "fruits"
+  },
+  {
+    "name": "Cherry",
+    "category": "fruits"
+  },
+  {
+    "name": "Chocolate",
+    "category": "fruits"
+  },
+  {
+    "name": "Cranberry",
+    "category": "fruits"
+  },
+  {
+    "name": "Dragonfruit",
+    "category": "fruits"
+  },
+  {
+    "name": "Durian",
+    "category": "fruits"
+  },
+  {
+    "name": "Feijoa",
+    "category": "fruits"
+  },
+  {
+    "name": "Fig",
+    "category": "fruits"
+  },
+  {
+    "name": "Gooseberry",
+    "category": "fruits"
+  },
+  {
+    "name": "Grape",
+    "category": "fruits"
+  },
+  {
+    "name": "Grapes",
+    "category": "fruits"
+  },
+  {
+    "name": "GreenApple",
+    "category": "fruits"
+  },
+  {
+    "name": "Guava",
+    "category": "fruits"
+  },
+  {
+    "name": "Kiwi",
+    "category": "fruits"
+  },
+  {
+    "name": "Kiwifruit",
+    "category": "fruits"
+  },
+  {
+    "name": "Lemon",
+    "category": "fruits"
+  },
+  {
+    "name": "Lime",
+    "category": "fruits"
+  },
+  {
+    "name": "Lingonberry",
+    "category": "fruits"
+  },
+  {
+    "name": "Lychee",
+    "category": "fruits"
+  },
+  {
+    "name": "Mango",
+    "category": "fruits"
+  },
+  {
+    "name": "Melon",
+    "category": "fruits"
+  },
+  {
+    "name": "Morus",
+    "category": "fruits"
+  },
+  {
+    "name": "Orange",
+    "category": "fruits"
+  },
+  {
+    "name": "Papaya",
+    "category": "fruits"
+  },
+  {
+    "name": "Passionfruit",
+    "category": "fruits"
+  },
+  {
+    "name": "Peach",
+    "category": "fruits"
+  },
+  {
+    "name": "Pear",
+    "category": "fruits"
+  },
+  {
+    "name": "Persimmon",
+    "category": "fruits"
+  },
+  {
+    "name": "Pineapple",
+    "category": "fruits"
+  },
+  {
+    "name": "Pitahaya",
+    "category": "fruits"
+  },
+  {
+    "name": "Plum",
+    "category": "fruits"
+  },
+  {
+    "name": "Pomegranate",
+    "category": "fruits"
+  },
+  {
+    "name": "Raspberry",
+    "category": "fruits"
+  },
+  {
+    "name": "Strawberry",
+    "category": "fruits"
+  },
+  {
+    "name": "Tangerine",
+    "category": "fruits"
+  },
+  {
+    "name": "Tomato",
+    "category": "fruits"
+  },
+  {
+    "name": "Watermelon",
+    "category": "fruits"
+  }
+]
