@@ -1,38 +1,36 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import { ReactElement } from 'react';
+import Layout from '../lib/components/layout/layout';
 import { useFetchIngredients } from '../lib/ingredients/ingredients.hooks';
 
 import AddMovementForm from '../lib/movements/components/add-movement'
 import styles from '../styles/Home.module.css'
+import { NextPageWithLayout } from './_app';
 
-export default function Home() {
+const Home: NextPageWithLayout = () => {
   const isLoading = useFetchIngredients();
   
   return (
     <div className={styles.container}>
       <Head>
-        <title>Inventory APp</title>
+        <title>Home - Inventory App</title>
         <meta name="description" content="An app to keep your inventory in check" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <div className={styles.home}>
         { isLoading && <div>Loading...</div>}
         { !isLoading && <AddMovementForm />}
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      </div>
     </div>
   )
 }
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
+  )
+}
+
+export default Home

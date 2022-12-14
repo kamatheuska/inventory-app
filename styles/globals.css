@@ -24,3 +24,8 @@ a {
     background: black;
   }
 }
+
+:root {
+  --inventory-page-padding: 3rem;
+  --inventory-color-gray-light: rgb(229, 229, 229);
+}

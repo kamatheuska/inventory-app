@@ -1,9 +1,12 @@
 import Head from 'next/head'
+import { ReactElement } from 'react';
+import Layout from '../../lib/components/layout/layout';
 import ListIngredients from '../../lib/ingredients/components/list-ingredients'
 import { useFetchIngredients } from '../../lib/ingredients/ingredients.hooks';
 import styles from '../../styles/Ingredients.module.css'
+import { NextPageWithLayout } from '../_app';
 
-export default function Ingredients() {
+const Ingredients: NextPageWithLayout = () => {
   const isLoading = useFetchIngredients();
   
   return (
@@ -11,7 +14,6 @@ export default function Ingredients() {
       <Head>
         <title>Ingredients - Inventory App</title>
         <meta name="description" content="List of ingredients of the inventory app" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
@@ -21,3 +23,14 @@ export default function Ingredients() {
     </div>
   )
 }
+
+
+Ingredients.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
+  )
+}
+
+export default Ingredients;
