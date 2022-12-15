@@ -7,6 +7,7 @@ const operations: OperationOptions[] = [
 ]
 
 const movementSchema = new Schema<IMovement>({
+  _id: Schema.Types.ObjectId,
   ingredientId: {
     type: Schema.Types.ObjectId,
     required: true,

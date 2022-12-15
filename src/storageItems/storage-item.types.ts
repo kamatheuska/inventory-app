@@ -1,6 +1,7 @@
 import { Document, Types } from "mongoose";
 
 export interface IStorageItem {
+  _id: Types.ObjectId,
   ingredientId: Types.ObjectId;
   amount: number;
 }

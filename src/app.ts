@@ -5,8 +5,19 @@ import AutoLoad from '@fastify/autoload';
 
 import { AppOptions, LoggerOptions } from './app.types';
 import movementPlugin from './movements/movement.plugin';
+import ingredientsPlugin from './ingredients/ingredients.plugin';
 
-// Pass --options via CLI arguments in command to enable these options.
+
+const app: FastifyPluginAsync<AppOptions> = async function app(fastify, opts) {
+  await fastify.register(AutoLoad, {
+    dir: join(__dirname, 'plugins'),
+    options: opts
+  })
+
+  await fastify.register(movementPlugin);
+  await fastify.register(ingredientsPlugin);
+};
+
 function getOptions (): AppOptions {
   let loggerOptions: LoggerOptions = true;
   
@@ -27,15 +38,6 @@ function getOptions (): AppOptions {
 }
 
 const options = getOptions();
-
-const app: FastifyPluginAsync<AppOptions> = async (fastify, opts) => {
-  await fastify.register(AutoLoad, {
-    dir: join(__dirname, 'plugins'),
-    options: opts
-  })
-
-  await fastify.register(movementPlugin);
-};
-
 export default app;
+
 export { app, options }

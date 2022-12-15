@@ -1,5 +1,5 @@
 import { test } from 'tap'
-import { getMockedMovements } from '../../src/movements/movement.mocks'
+import { getMockedMovements } from '../../src/movements/movement.mock'
 import { build } from '../helper'
 import Movement from '../../src/movements/movement.model'
 import StorageItem from '../../src/storageItems/storage-item.model'

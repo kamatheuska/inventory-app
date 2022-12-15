@@ -1,4 +1,7 @@
+import { Types } from "mongoose";
+
 export interface IIngredients {
+  _id: Types.ObjectId;
   name: string,
   measureUnit: MeasureUnitOptions,
   category: string,

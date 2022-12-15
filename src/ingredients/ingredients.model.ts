@@ -14,6 +14,7 @@ const categories: IngredientCategoryOptions[] = [
 ]
 
 const ingredientsSchema = new Schema<IIngredients>({
+  _id: Schema.Types.ObjectId,
   name: {
     type: String,
     required: true,
