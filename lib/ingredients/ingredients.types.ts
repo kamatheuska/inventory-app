@@ -1,4 +1,5 @@
 export interface IIngredient {
+  _id: string,
   name: string,
   measureUnit: MeasureUnitOptions,
   category: string,

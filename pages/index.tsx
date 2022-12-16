@@ -1,14 +1,15 @@
 import Head from 'next/head'
+import Link from 'next/link';
 import { ReactElement } from 'react';
 import Layout from '../lib/components/layout/layout';
-import { useFetchIngredients } from '../lib/ingredients/ingredients.hooks';
 
-import AddMovementForm from '../lib/movements/components/add-movement'
+import ListMovements from '../lib/movements/components/list-movements';
+import { useFetchMovements } from '../lib/movements/movements.hooks';
 import styles from '../styles/Home.module.css'
 import { NextPageWithLayout } from './_app';
 
 const Home: NextPageWithLayout = () => {
-  const isLoading = useFetchIngredients();
+  const isLoadingMovements = useFetchMovements();
   
   return (
     <div className={styles.container}>
@@ -18,8 +19,14 @@ const Home: NextPageWithLayout = () => {
       </Head>
 
       <div className={styles.home}>
-        { isLoading && <div>Loading...</div>}
-        { !isLoading && <AddMovementForm />}
+        <h1>Movements</h1>
+        <Link href="/movements/add">
+          <button>
+            Add Movement
+          </button>
+        </Link>
+        { isLoadingMovements && <div>Loading...</div>}
+        { !isLoadingMovements && <ListMovements />}
       </div>
     </div>
   )

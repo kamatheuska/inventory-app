@@ -37,13 +37,22 @@ async function request<T>({
     body,
   });
 
-  const responseBody = await response.json();
+  try {
+    const responseBody = await response.json();
 
-  if (!response.ok) {
-    throw new (ServerError as any)(responseBody);
+    if (!response.ok) {
+      throw new (ServerError as any)(responseBody);
+    }
+    
+    return responseBody;
+    
+  } catch (error) {
+    if (!response.ok) {
+      throw new (ServerError as any)();
+    }
+
+    return []    
   }
-
-  return responseBody;
 };
 
 export default request;

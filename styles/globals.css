@@ -27,5 +27,10 @@ a {
 
 :root {
   --inventory-page-padding: 3rem;
+  --inventory-page-top-padding: 3rem;
   --inventory-color-gray-light: rgb(229, 229, 229);
+  /*
+  * Cards
+  */
+  --inventory-ingredient-card-height: 3rem;
 }

@@ -13,3 +13,14 @@ export async function addMovement(movement: IMovement) {
     }  
   })
 }
+
+export async function getAllMovements(): Promise<IMovement[]> {
+  const data = await request({
+    endpoint: '/api/movements',
+    headers: {
+      'Accept': 'application/json'
+    }  
+  })
+  
+  return data
+}

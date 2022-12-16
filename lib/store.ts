@@ -1,10 +1,12 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import ingredientsReducer from "./ingredients/ingredientSlice";
+import movementReducer from "./movements/movementSlice";
 
 const makeStore = () => configureStore({
   reducer: {
-    ingredients: ingredientsReducer
+    ingredients: ingredientsReducer,
+    movements: movementReducer
   },
   devTools: true,
 })
