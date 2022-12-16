@@ -1,5 +1,5 @@
 
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { MovementType } from "../movements/movement.plugin";
 import StorageItem from "./storage-item.model";
 import { StorageItemDocument } from "./storage-item.types";
@@ -25,8 +25,9 @@ class StorageItemService {
 
   static async createFromMovement(movement: MovementType) {
     const item = new StorageItem({
+      _id: new Types.ObjectId(),
        amount: movement.amount,
-       ingredientId: new mongoose.Types.ObjectId(movement.ingredientId)
+       ingredientId: new mongoose.Types.ObjectId(movement.ingredientId),
     })
 
     return item.save()

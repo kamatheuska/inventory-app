@@ -1,5 +1,6 @@
 import { default as parentDebug } from 'debug';
 import * as createError from 'http-errors'
+import { Types } from 'mongoose';
 import Movement from "./movement.model";
 import { MovementType } from "./movement.plugin";
 
@@ -21,7 +22,10 @@ class MovementService {
   static async add(movement: MovementType) {
     try {
         
-      const instance = new Movement(movement);
+      const instance = new Movement({
+        ...movement,
+        _id: new Types.ObjectId()
+      });
 
       const saved = await instance.save();
   
