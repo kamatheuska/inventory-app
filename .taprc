@@ -1,0 +1,13 @@
+test-env: [
+  TS_NODE_FILES=true,
+  TS_NODE_PROJECT=./test/tsconfig.json,
+  NODE_ENV=test,
+  MONGODB_URI=mongodb://inventory-dev:Pauper-Routine-Sneer3-Broiler@localhost:27017/inventory-app-test?authSource=inventory-app
+]
+
+branches: 80
+functions: 80
+lines: 80
+statements: 80
+timeout: 0
+check-coverage: false

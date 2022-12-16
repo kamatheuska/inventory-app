@@ -1,0 +1,47 @@
+{
+  "name": "fapp",
+  "version": "1.0.0",
+  "main": "app.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "yarn build:ts && tsc -p test/tsconfig.json && tap --ts \"test/**/*.test.ts\" -R spec",
+    "test:only": "tap --ts \"test/**/*.test.ts\"",
+    "start": "yarn build:ts && fastify start -l info dist/app.js",
+    "build:ts": "tsc",
+    "watch:test:ts": "yarn watch:ts && tsc -w -p test/tsconfig.json",
+    "watch:ts": "tsc -w",
+    "dev": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
+    "debug": "node --inspect-brk=9229 ./node_modules/.bin/fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js --debug-port=9229",
+    "seed": "ts-node ./src/scripts/db/seed.ts | pino-pretty"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/autoload": "^5.0.0",
+    "@fastify/env": "^4.2.0",
+    "@fastify/sensible": "^5.0.0",
+    "@sinclair/typebox": "^0.25.13",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.0",
+    "fastify": "^4.0.0",
+    "fastify-cli": "^5.7.0",
+    "fastify-plugin": "^4.0.0",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.8.0",
+    "pino": "^8.5.0",
+    "pino-pretty": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/http-errors": "^2.0.1",
+    "@types/node": "^18.0.0",
+    "@types/tap": "^15.0.5",
+    "fastify-tsconfig": "^1.0.1",
+    "tap": "^16.3.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}
