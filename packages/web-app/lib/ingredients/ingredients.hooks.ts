@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { getAllIngredients } from "./ingredients.rest";
-import { finishRequest, setList } from "./ingredientSlice";
-
+import { finishRequest, setList, startRequest } from "./ingredientSlice";
 
 export function useFetchIngredients() {
-
+  const didFetch = useRef(false);
   const dispatch = useDispatch();
-  const fetchIngredients = () => {
-    getAllIngredients()
-      .then((list) => dispatch(setList(list)))
-  }
-
-  // const fetchIngredients = async () => {
-  //   try {
-  //     const list = await getAllIngredients();
-  //     dispatch(setList(list))
-  //   } catch (error) {
-  //     dispatch(setList([]))
-  //   } finally {
-  //     dispatch(finishRequest())
-  //   }
-  // }
   
-  return {
-    fetchIngredients
-  };
+  useEffect(() => {
+
+    const fetchIngredients = async () => {
+      dispatch(startRequest());
+      const list = await getAllIngredients();
+      
+      dispatch(setList(list));
+
+      dispatch(finishRequest());
+    }
+
+    if (!didFetch.current) {
+      fetchIngredients()
+    }
+
+    return () => {
+      didFetch.current = true;
+    }
+  }, [dispatch])
 }

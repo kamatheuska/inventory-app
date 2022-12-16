@@ -1,13 +1,16 @@
 import Head from 'next/head'
 import { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import Layout from '../../lib/components/layout/layout';
 import ListIngredients from '../../lib/ingredients/components/list-ingredients'
 import { useFetchIngredients } from '../../lib/ingredients/ingredients.hooks';
+import { getIsLoading } from '../../lib/ingredients/ingredientSlice';
 import styles from '../../styles/Ingredients.module.css'
 import { NextPageWithLayout } from '../_app';
 
 const Ingredients: NextPageWithLayout = () => {
-  const isLoading = useFetchIngredients();
+  useFetchIngredients();
+  const isLoading = useSelector(getIsLoading);
   
   return (
     <div className={styles.container}>

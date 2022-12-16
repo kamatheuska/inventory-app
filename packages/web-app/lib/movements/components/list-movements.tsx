@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
-import { AppState } from '../../store'
+import { getAll } from '../movementSlice';
 import styles from './list-movements.module.css'
 
 export default function ListMovements () {
-  const movementsList = useSelector((state: AppState) => state.movements.list);
+  const movementsList = useSelector(getAll);
   
   return (
     <div className={styles.root}>

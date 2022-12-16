@@ -1,26 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { getAllMovements } from "./movements.rest";
-import { setMovementsList } from "./movementSlice";
+import { setList } from "./movementSlice";
 
 export function useFetchMovements() {
+  const didFetch = useRef(false);
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
+    
     const fetchMovements = async () => {
       setLoading(true);
       const list = await getAllMovements();
-
-      dispatch(setMovementsList(list));
+      dispatch(setList(list));
+      setLoading(false);
     }
 
-    fetchMovements()
-      .catch(console.error)
-      .finally(() => {
-        setLoading(false);
-      })
+    if (!didFetch.current) {
+      fetchMovements()
+    }
+
+    return () => {
+      didFetch.current = true;
+    }
   }, [dispatch])
   
-  return isLoading;
+  return {
+    isLoading
+  };
 }

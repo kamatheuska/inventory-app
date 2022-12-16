@@ -1,16 +1,19 @@
 import Head from 'next/head'
 import Link from 'next/link';
 import { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import Layout from '../lib/components/layout/layout';
 
 import ListMovements from '../lib/movements/components/list-movements';
 import { useFetchMovements } from '../lib/movements/movements.hooks';
+import { getIsLoading } from '../lib/movements/movementSlice';
 import styles from '../styles/Home.module.css'
 import { NextPageWithLayout } from './_app';
 
 const Home: NextPageWithLayout = () => {
-  const isLoadingMovements = useFetchMovements();
-  
+  useFetchMovements();
+  const isLoading = useSelector(getIsLoading);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -25,8 +28,8 @@ const Home: NextPageWithLayout = () => {
             Add Movement
           </button>
         </Link>
-        { isLoadingMovements && <div>Loading...</div>}
-        { !isLoadingMovements && <ListMovements />}
+        { isLoading && <div>Loading...</div>}
+        { !isLoading && <ListMovements />  }
       </div>
     </div>
   )

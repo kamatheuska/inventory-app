@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "../store";
-import { getAllIngredients } from "./ingredients.rest";
+import { AppState } from "../store";
 import { IIngredient } from "./ingredients.types";
 
 export interface IngredientsState {
@@ -29,6 +28,9 @@ export const ingredientSlice = createSlice({
   }
 })
 
+// Selectors
+export const getAll = (state: AppState) => state.ingredients.list
+export const getIsLoading = (state: AppState) => state.ingredients.isLoading
 
 export const { setList, startRequest, finishRequest } = ingredientSlice.actions;
 

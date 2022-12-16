@@ -7,14 +7,11 @@ import AddMovementForm from '../../lib/movements/components/add-movement';
 import { useFetchIngredients } from '../../lib/ingredients/ingredients.hooks';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../lib/store';
+import { getIsLoading } from '../../lib/ingredients/ingredientSlice';
 
 const AddMovementPage: NextPageWithLayout = () => {
-  const { fetchIngredients } = useFetchIngredients()
-  const isLoading = useSelector((state: AppState) => state.ingredients.isLoading)
-  useEffect(() => {
-    console.log('fetch')
-    fetchIngredients()
-  }, [fetchIngredients]);
+  useFetchIngredients()
+  const isLoading = useSelector(getIsLoading)
 
   return (
     <div className={styles.container}>

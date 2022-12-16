@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
-import { AppState } from '../../store'
 import { IIngredient } from '../ingredients.types';
+import { getAll } from '../ingredientSlice';
 import IngredientCard from './ingredient-card';
 import styles from './list-ingredients.module.css'
 
@@ -9,8 +9,8 @@ type Props = {
 }
 
 export default function ListIngredients ({ onSelect }: Props) {
-  const ingredientsList = useSelector((state: AppState) => state.ingredients.list);
-  console.log('log')
+  const ingredientsList = useSelector(getAll);
+
   return (
     <div className={styles.root}>
       <div className={styles.grid}>
