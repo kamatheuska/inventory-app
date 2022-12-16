@@ -1,0 +1,13 @@
+.container {
+  padding-left: var(--inventory-page-padding);
+  padding-right: var(--inventory-page-padding);
+  min-height: 80vh;
+  padding-top: var(--inventory-page-top-padding);
+
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

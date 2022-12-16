@@ -1,0 +1,15 @@
+.root {
+  min-height: var(--inventory-ingredient-card-height);
+  padding: 1.5rem;
+  border: 1px solid var(--inventory-color-gray-light)
+}
+.header {
+  margin-bottom: 1rem;
+}
+.header h3 {
+  font-size: 1.8rem;
+}
+
+.content h3 {
+  font-size: 1.8rem;
+}

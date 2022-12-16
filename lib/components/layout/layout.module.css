@@ -1,0 +1,5 @@
+.main {
+
+  padding-left: var(--inventory-page-padding);
+  padding-right: var(--inventory-page-padding);
+}
