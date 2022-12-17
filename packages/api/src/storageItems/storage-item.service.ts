@@ -1,10 +1,10 @@
 import { default as parentDebug } from 'debug';
-import createHttpError = require('http-errors');
+import * as createHttpError from 'http-errors';
 import mongoose, { Types } from "mongoose";
+import { IMovement, OperationOptions, StorageItemDocument } from "@inventory-app/types"
+
 import { MovementPayloadType } from "../movements/movement.plugin";
-import { IMovement, OperationOptions } from "../movements/movement.types";
 import StorageItem from "./storage-item.model";
-import { StorageItemDocument } from "./storage-item.types";
 
 const debug = parentDebug('app:services:storage-items')
 

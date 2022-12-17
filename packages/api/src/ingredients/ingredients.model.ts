@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IIngredient, IngredientCategoryOptions, MeasureUnitOptions } from "./ingredients.types";
+import { IIngredient, IngredientCategoryOptions, MeasureUnitOptions } from "@inventory-app/types"
 
 const measureUnits: MeasureUnitOptions[] = [
   'gr',

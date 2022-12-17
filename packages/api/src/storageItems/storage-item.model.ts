@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
+import { IStorageItem } from "@inventory-app/types"
 import { movementSchema } from "../movements/movement.model";
-import { IStorageItem } from "./storage-item.types";
 
 const storageItemSchema = new Schema<IStorageItem>({
   _id: Schema.Types.ObjectId,

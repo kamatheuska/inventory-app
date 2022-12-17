@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IMovement, MovementDTO, OperationOptions } from "./movement.types";
+import { IMovement, MovementDTO, OperationOptions } from "@inventory-app/types"
 
 const operations: OperationOptions[] = [
   'add',

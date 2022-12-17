@@ -4,7 +4,7 @@ import { IMovement } from "../movements.types";
 import { useForm } from "react-hook-form";
 import styles from './add-movement.module.css'
 import IngridientSelector from "../../ingredients/components/ingredient-selector";
-import { IIngredient } from "../../ingredients/ingredients.types";
+import { IIngredient } from "@inventory-app/types";
 
 export default function AddMovementForm () {
   const { register, handleSubmit, setValue } = useForm<IMovement>();

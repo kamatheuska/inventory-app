@@ -1,5 +1,5 @@
 import request from "../utils/rest";
-import { IIngredient } from "./ingredients.types";
+import { IIngredient } from "@inventory-app/types"
 
 export async function getAllIngredients(): Promise<IIngredient[]> {
   const data = await request({

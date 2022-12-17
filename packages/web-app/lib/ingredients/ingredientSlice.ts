@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "../store";
-import { IIngredient } from "./ingredients.types";
+import { IIngredient } from "@inventory-app/types"
 
 export interface IngredientsState {
   list: IIngredient[],

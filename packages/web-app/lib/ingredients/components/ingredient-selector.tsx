@@ -1,5 +1,5 @@
 import { MouseEventHandler, useDebugValue, useState } from "react"
-import { IIngredient } from "../ingredients.types"
+import { IIngredient } from "@inventory-app/types"
 import IngredientCard from "./ingredient-card"
 
 import styles from './ingredient-card.module.css'

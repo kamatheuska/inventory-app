@@ -1,11 +1,12 @@
 import { test } from 'tap'
+import { Model } from 'mongoose'
+import { IStorageItem } from "@inventory-app/types"
+
 import { getMockedMovementPayloads, getMockedMovements } from '../../src/movements/movement.mock'
 import { build } from '../helper'
 import Movement from '../../src/movements/movement.model'
 import StorageItem from '../../src/storageItems/storage-item.model'
-import { IStorageItem } from '../../src/storageItems/storage-item.types'
 import { getMockedStorageItems } from '../../src/storageItems/storage-item.mocks'
-import { Model } from 'mongoose'
 import { MovementPayloadType } from '../../src/movements/movement.plugin'
 
 async function cleanDb() {

@@ -1,5 +1,5 @@
 import request from "../utils/rest";
-import { IMovement } from "./movements.types";
+import { IMovement } from "@inventory-app/types"
 
 export async function addMovement(movement: IMovement) {
   const body = JSON.stringify(movement);

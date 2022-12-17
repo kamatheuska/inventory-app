@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { MovementPayloadType } from "./movement.plugin";
-import { IMovement } from "./movement.types";
+import { IMovement } from "@inventory-app/types"
 
 export const getMockedMovements = (): IMovement[] => ([
   {

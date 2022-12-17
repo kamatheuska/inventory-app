@@ -1,4 +1,4 @@
-import { IIngredient } from "../ingredients.types"
+import { IIngredient } from "@inventory-app/types"
 
 import styles from './ingredient-card.module.css'
 

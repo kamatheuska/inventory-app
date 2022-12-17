@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { IIngredient } from "../ingredients/ingredients.types";
+import { IIngredient } from "./ingredient.types";
 
 export type OperationOptions = 'add' | 'remove';
 
@@ -15,5 +15,4 @@ export interface MovementDTO {
   _id: Types.ObjectId;
   amount: number;
   operation: OperationOptions;
-
 }

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { IIngredient } from '../ingredients.types';
+import { IIngredient } from "@inventory-app/types"
 import { getAll } from '../ingredientSlice';
 import IngredientCard from './ingredient-card';
 import styles from './list-ingredients.module.css'

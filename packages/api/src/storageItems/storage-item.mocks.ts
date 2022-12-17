@@ -1,6 +1,5 @@
 import { Types } from "mongoose";
-import { IMovement } from "../movements/movement.types";
-import { IStorageItem } from "./storage-item.types";
+import { IMovement, IStorageItem } from "@inventory-app/types"
 
 export const getMockedStorageItems = (movements: IMovement[]): IStorageItem[] => ([
   {
