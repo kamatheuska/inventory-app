@@ -35,6 +35,7 @@ export const movementSchema = new Schema<IMovement, MovementModel, MovementInsta
     required: true,
   }
 }, {
+  autoIndex: false,
   timestamps: true,
 });
 
@@ -48,6 +49,7 @@ movementSchema.methods.toDTO = function toDTO(): MovementDTO {
     ingredient,
     amount: this.amount,
     operation: this.operation,
+    createdAt: this.createdAt,
   }
 }
 const Movement = model('Movement', movementSchema);

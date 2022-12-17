@@ -57,7 +57,7 @@ class StorageItemService {
 
       storageItem.movements.push(movement)
 
-      await storageItem.save();
+      return await storageItem.save();
     } catch (error) {
       createHttpError(500, error as unknown as createHttpError.UnknownError);
     }
@@ -65,9 +65,9 @@ class StorageItemService {
 
   private static updateFromMovement(doc: StorageItemDocument, movement: IMovement) {
     if (movement.operation === 'add') {
-      doc.amount =+ movement.amount;
+      doc.amount += movement.amount;
     } else {
-      doc.amount =- movement.amount;
+      doc.amount -= movement.amount;
     }
 
     return doc;

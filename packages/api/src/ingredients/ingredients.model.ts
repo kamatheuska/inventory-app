@@ -42,6 +42,8 @@ const ingredientsSchema = new Schema<IIngredient, IngredientModel, IngredientIns
     required: true,
     default: 'gr' as MeasureUnitOptions,
   }
+}, {
+  autoIndex: false,
 });
 
 

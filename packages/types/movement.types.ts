@@ -8,6 +8,7 @@ export interface IMovement {
   _id: Types.ObjectId;
   amount: number;
   operation: OperationOptions;
+  createdAt?: Date;
 }
 
 export interface MovementDTO extends Omit<IMovement, '_id' | 'ingredient' > {

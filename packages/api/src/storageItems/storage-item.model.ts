@@ -28,6 +28,8 @@ const storageItemSchema = new Schema<IStorageItem, StorageItemModel, StorateItem
     required: true,
   },
   movements: [movementSchema],
+}, {
+  autoIndex: false,
 });
 
 storageItemSchema.methods.toDTO = function(): StorageItemDTO {
