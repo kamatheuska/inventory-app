@@ -1,0 +1,48 @@
+.root {
+  --inventory-movement-item-border-radius: 10px;
+  padding: 0.7rem;
+  border: solid 1px var(--inventory-color-gray-light);
+  min-width: 30rem;
+  display: grid;
+  grid-template-areas: 'icon content amount';
+  grid-template-columns: max-content auto 10rem;
+  gap: 1rem;
+}
+
+.root:first-child {
+  border-top-left-radius: var(--inventory-movement-item-border-radius);
+  border-top-right-radius: var(--inventory-movement-item-border-radius);
+
+}
+
+.root:last-child {
+  border-bottom-left-radius: var(--inventory-movement-item-border-radius);
+  border-bottom-right-radius: var(--inventory-movement-item-border-radius);
+}
+
+.icon {
+  grid-area: 'icon';
+}
+
+.content {
+  grid-area: 'content';
+  justify-self: start;
+}
+
+.content h5 {
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+.amount {
+  grid-area: 'amount';
+  align-self: center;
+  justify-self: end;
+}
+
+.background {
+  background-color: rgb(73, 199, 213);
+  color: black;
+  padding: 6px 5px;
+  
+  border-radius: 5px;
+}

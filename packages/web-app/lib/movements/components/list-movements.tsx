@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { getAll } from '../movementSlice';
 import styles from './list-movements.module.css'
+import MovementItem from './movement-item';
 
 export default function ListMovements () {
   const movementsList = useSelector(getAll);
@@ -9,18 +10,7 @@ export default function ListMovements () {
     <div className={styles.root}>
       <div className={styles.grid}>
         {movementsList.map((movement, index) => (
-          <div key={index} className={styles.row}>
-            <div className={styles.cell}>
-              <span>
-                { movement.ingredientId }
-              </span>
-            </div>
-            <div className={styles.cell}>
-              <span>
-                { movement.amount }
-              </span>
-            </div>
-          </div>
+          <MovementItem key={index} {...movement} />
         ))}
       </div>
 
