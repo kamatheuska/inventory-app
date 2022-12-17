@@ -1,0 +1,15 @@
+{
+  "name": "inventory-app",
+  "version": "1.0.0",
+  "description": "An app to keep track of your inventory",
+  "main": "index.js",
+  "repository": "git@github.com:kamatheuska/inventory-app.git",
+  "author": "Nicolas Ramirez <nico9017@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/api",
+    "packages/web-app",
+    "packages/types"
+  ],
+  "private": true
+}
