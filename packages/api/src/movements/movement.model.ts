@@ -1,15 +1,16 @@
 import { Schema, model } from "mongoose";
-import { IMovement, OperationOptions } from "./movement.types";
+import { IMovement, MovementDTO, OperationOptions } from "./movement.types";
 
 const operations: OperationOptions[] = [
   'add',
   'remove'
 ]
 
-const movementSchema = new Schema<IMovement>({
+export const movementSchema = new Schema<IMovement>({
   _id: Schema.Types.ObjectId,
-  ingredientId: {
+  ingredient: {
     type: Schema.Types.ObjectId,
+    ref: 'Ingredients',
     required: true,
   },
   amount: {
@@ -20,6 +21,19 @@ const movementSchema = new Schema<IMovement>({
     type: String,
     enum: operations,
     required: true,
+  }
+}, {
+  timestamps: true,
+  methods: {
+    toJSON(): MovementDTO {
+      return {
+        _id: this._id,
+        ingredient: this.ingredient,
+        amount: this.amount,
+        operation: this.operation,
+
+      }
+    }
   }
 });
 

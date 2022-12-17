@@ -13,7 +13,7 @@
     "watch:test:ts": "yarn watch:ts && tsc -w -p test/tsconfig.json",
     "watch:ts": "tsc -w",
     "dev": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
-    "debug": "node --inspect-brk=9229 ./node_modules/.bin/fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js --debug-port=9229",
+    "debug": "node --inspect=9239 ./node_modules/.bin/fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js --debug-port=9239",
     "seed": "ts-node ./src/scripts/db/seed.ts | pino-pretty"
   },
   "keywords": [],

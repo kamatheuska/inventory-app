@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IIngredients, IngredientCategoryOptions, MeasureUnitOptions } from "./ingredients.types";
+import { IIngredient, IngredientCategoryOptions, MeasureUnitOptions } from "./ingredients.types";
 
 const measureUnits: MeasureUnitOptions[] = [
   'gr',
@@ -13,7 +13,7 @@ const categories: IngredientCategoryOptions[] = [
   'vegetables'
 ]
 
-const ingredientsSchema = new Schema<IIngredients>({
+const ingredientsSchema = new Schema<IIngredient>({
   _id: Schema.Types.ObjectId,
   name: {
     type: String,
