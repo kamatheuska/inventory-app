@@ -1,9 +1,9 @@
+import { MovementDTO } from "@inventory-app/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "../store";
-import { IMovement } from "./movements.types";
 
 export interface MovementsState {
-  list: IMovement[],
+  list: MovementDTO[],
   isLoading: boolean,
 }
 
@@ -16,7 +16,7 @@ export const ingredientSlice = createSlice({
   name: 'movements',
   initialState,
   reducers: {
-    setList(state, action: PayloadAction<IMovement[]>) {
+    setList(state, action: PayloadAction<MovementDTO[]>) {
       state.list = action.payload;
     },
     startRequest(state) {

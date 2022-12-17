@@ -1,5 +1,6 @@
 import request from "../utils/rest";
-import { IMovement } from "@inventory-app/types"
+import { IMovement, MovementDTO } from "@inventory-app/types"
+import mapper from "./movements.mapper";
 
 export async function addMovement(movement: IMovement) {
   const body = JSON.stringify(movement);
@@ -14,13 +15,13 @@ export async function addMovement(movement: IMovement) {
   })
 }
 
-export async function getAllMovements(): Promise<IMovement[]> {
+export async function getAllMovements(): Promise<MovementDTO[]> {
   const data = await request({
     endpoint: '/api/movements',
     headers: {
       'Accept': 'application/json'
     }  
   })
-  
-  return data
+
+  return Array.isArray(data) ? data.map(mapper) : [];
 }

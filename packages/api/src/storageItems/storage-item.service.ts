@@ -1,27 +1,37 @@
 import { default as parentDebug } from 'debug';
 import * as createHttpError from 'http-errors';
 import mongoose, { Types } from "mongoose";
-import { IMovement, OperationOptions, StorageItemDocument } from "@inventory-app/types"
+import {
+  IMovement,
+  MovementDTO,
+  OperationOptions,
+  StorageItemDocument
+} from "@inventory-app/types"
 
-import { MovementPayloadType } from "../movements/movement.plugin";
 import StorageItem from "./storage-item.model";
+import { MovementPayloadType } from '../movements/movement.plugin';
 
 const debug = parentDebug('app:services:storage-items')
 
 class StorageItemService {
-  static async findAllMovements() {
+  static async findAllMovements(): Promise<MovementDTO[]> {
     const docs = await StorageItem.find({}).populate('ingredient').exec();
 
-    const movements: IMovement[] = docs.reduce((acc, storageItem) => {
-      const item = storageItem.toJSON();
+    const movements: MovementDTO[] = docs.reduce((acc, storageItem) => {
+      const item = storageItem.toDTO()
+
       return [
         ...acc,
-        ...item.movements.map(movement => ({
-          ...movement,
-          ingredient: item.ingredient,
-        }))
+        ...storageItem.movements.map(movement => {
+          const dto = (movement as any).toDTO() as MovementDTO;
+
+          return {
+            ...dto,
+            ingredient: item.ingredient,
+          }
+        })
       ]
-    }, [] as IMovement[]);
+    }, [] as MovementDTO[]);
 
     debug(movements);
 
