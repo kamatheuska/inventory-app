@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IIngredient, IngredientCategoryOptions, MeasureUnitOptions } from "@inventory-app/types"
+import { IIngredient, IngredientCategoryOptions, IngredientDTO, IngredientInstanceMethods, IngredientModel, MeasureUnitOptions } from "@inventory-app/types"
 
 const measureUnits: MeasureUnitOptions[] = [
   'gr',
@@ -13,7 +13,7 @@ const categories: IngredientCategoryOptions[] = [
   'vegetables'
 ]
 
-const ingredientsSchema = new Schema<IIngredient>({
+const ingredientsSchema = new Schema<IIngredient, IngredientModel, IngredientInstanceMethods>({
   _id: Schema.Types.ObjectId,
   name: {
     type: String,
@@ -43,6 +43,20 @@ const ingredientsSchema = new Schema<IIngredient>({
     default: 'gr' as MeasureUnitOptions,
   }
 });
+
+
+
+ingredientsSchema.methods.toDTO = function(): IngredientDTO {
+  return {
+    _id: this._id.toString(),
+    category: this.category,
+    measureUnit: this.measureUnit,
+    name: this.name,
+    inventory: this.inventory,
+    tags: this.tags,
+    description: this.description,
+  }
+}
 
 const Ingredients = model('Ingredients', ingredientsSchema);
 

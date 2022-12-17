@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 export interface IIngredient {
   _id: Types.ObjectId;
@@ -7,7 +7,7 @@ export interface IIngredient {
   category: string,
   description?: string,
   inventory?: InventoryDetails,
-  tags?: Tags
+  tags?: Tags,
 }
 
 interface Tags {
@@ -21,3 +21,14 @@ export interface InventoryDetails {
 
 export type MeasureUnitOptions = 'kg' | 'gr' | 'u' | 'lt';
 export type IngredientCategoryOptions = 'fruits' | 'vegetables';
+
+export interface IngredientDTO extends Omit<IIngredient, '_id'> {
+  _id: string,
+};
+
+
+export interface IngredientInstanceMethods {
+  toDTO: () => IngredientDTO
+}
+
+export interface IngredientModel extends Model<IIngredient, {}, IngredientInstanceMethods> {}
