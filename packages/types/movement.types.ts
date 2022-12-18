@@ -12,7 +12,7 @@ export interface IMovement {
 }
 
 export interface MovementDTO extends Omit<IMovement, '_id' | 'ingredient' > {
-  _id: string,
+  _id?: string,
   ingredient: string | IngredientDTO,
 };
 
