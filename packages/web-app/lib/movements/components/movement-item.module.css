@@ -25,6 +25,10 @@
   border-bottom-right-radius: var(--movement-item-border-radius);
 }
 
+.root:not(:last-child) {
+  border-bottom: none;
+}
+
 .icon {
   grid-area: icon;
 }
