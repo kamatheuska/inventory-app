@@ -5,12 +5,12 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(2rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(3,  var(--ingredient-card-height));
+  gap: 10px;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 760px) {
   .grid {
-    grid-template-columns: repeat(6, minmax(2rem, 1fr));
+    grid-template-columns: repeat(6,  var(--ingredient-card-height));
   }
 }

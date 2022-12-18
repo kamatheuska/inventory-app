@@ -5,6 +5,9 @@ type Props = StorageItemDTO;
 
 export default function StorageItemBox({ amount, ingredient }: Props) {
   const ingredientDTO = ingredient as IngredientDTO;
+  if (!ingredientDTO) {
+    return <div className={styles.root} data-cy="storage-item-box"></div>
+  }
   return (
     <div className={styles.root} data-cy="storage-item-box">
       <h3>{ingredientDTO.name}</h3>

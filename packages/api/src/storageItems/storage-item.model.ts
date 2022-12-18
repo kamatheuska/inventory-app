@@ -35,7 +35,7 @@ const storageItemSchema = new Schema<IStorageItem, StorageItemModel, StorateItem
 storageItemSchema.methods.toDTO = function(): StorageItemDTO {
   const ingredient: string | IngredientDTO = this.ingredient instanceof Types.ObjectId
     ? (this.ingredient as Types.ObjectId).toString()
-    : this.ingredient.toDTO();
+    : this.ingredient?.toDTO();
 
   return {
     _id: this._id.toString(),

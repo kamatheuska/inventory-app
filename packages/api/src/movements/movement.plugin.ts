@@ -7,14 +7,14 @@ const Query = Type.Object({
   currentPage: Type.String(),
 })
 
-const MovementPayload = Type.Object({
-  ingredientId: Type.String(),
+const MovementBodySchema = Type.Object({
+  ingredient: Type.String(),
   amount: Type.Number(),
   operation: Type.String()
 })
 
 type Querystring = Static<typeof Query>
-export type MovementPayloadType = Static<typeof MovementPayload>
+export type MovementBodySchemaType = Static<typeof MovementBodySchema>
 
 async function movementPlugin(fastify: FastifyInstance) {
   fastify.route<{ Querystring: Querystring }>({
@@ -25,14 +25,17 @@ async function movementPlugin(fastify: FastifyInstance) {
     }
   });
 
-  fastify.route<{ Querystring: Querystring, Body: MovementPayloadType }>({
+  fastify.route<{ Querystring: Querystring, Body: MovementBodySchemaType }>({
     method: 'POST',
     url: '/api/movements/new',
+    schema: {
+      body: MovementBodySchema,
+    },
     handler: async (req) => {
       await StorageItemService.addMovement({
         amount: req.body.amount,
         operation: req.body.operation,
-        ingredientId: req.body.ingredientId
+        ingredient: req.body.ingredient,
       })
     }
   });

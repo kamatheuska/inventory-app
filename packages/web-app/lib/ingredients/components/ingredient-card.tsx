@@ -20,17 +20,18 @@ export default function IngredientCard ({ ingredient, onSelect }: Props) {
         </h3>
       </header>
       <div className={styles.content}>
-
-        <p>
-          { ingredient.description }
-        </p>
+        { !!ingredient.description && (
+          <p>
+            { ingredient.description }
+          </p>
+        )}
         <p>
           <strong>
             Category:
           </strong>
-          <span>
-            { ingredient.category }
-          </span>
+        </p>
+        <p>
+          { ingredient.category }
         </p>
       </div>
     </div>

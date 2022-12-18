@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MovementPayloadType } from "./movement.plugin";
+import { MovementBodySchemaType } from "./movement.plugin";
 import { IMovement } from "@inventory-app/types"
 
 export const getMockedMovements = (): IMovement[] => ([
@@ -23,19 +23,19 @@ export const getMockedMovements = (): IMovement[] => ([
   },
 ])
 
-export const getMockedMovementPayloads = (): MovementPayloadType[] => ([
+export const getMockedMovementPayloads = (): MovementBodySchemaType[] => ([
   {
-    ingredientId: new mongoose.Types.ObjectId().toString(),
+    ingredient: new mongoose.Types.ObjectId().toString(),
     amount: 100,
     operation: 'add'
   },
   {
-    ingredientId: new mongoose.Types.ObjectId().toString(),
+    ingredient: new mongoose.Types.ObjectId().toString(),
     amount: 150,
     operation: 'remove'
   },
   {
-    ingredientId: new mongoose.Types.ObjectId().toString(),
+    ingredient: new mongoose.Types.ObjectId().toString(),
     amount: 1502,
     operation: 'remove'
   },

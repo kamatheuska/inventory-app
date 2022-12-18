@@ -28,19 +28,30 @@ export default function MovementItem ({ amount, ingredient, operation, createdAt
           height={35}
         />
       </div>
+      {ingredientDTO
+        ? (
+          <>
+          <div className={styles.content}>
+            <h5>{ingredientDTO.name}</h5>
+            <p>{ date }</p>
+          </div>
+          <div className={amountClasses.join(' ')}>
+            <span>
+            { isAddOperation() ? '' : '-' } {amount}
+            </span>
+            <span>
+              {' '} { ingredientDTO.measureUnit }
+            </span>
+          </div>
+          </>
+          
+        )
+        : (
+        <div className={styles.content}>
+        </div>
+        )
+      }
 
-      <div className={styles.content}>
-        <h5>{ingredientDTO.name}</h5>
-        <p>{ date }</p>
-      </div>
-      <div className={amountClasses.join(' ')}>
-        <span>
-         { isAddOperation() ? '' : '-' } {amount}
-        </span>
-        <span>
-          {' '} { ingredientDTO.measureUnit }
-        </span>
-      </div>
 
     </div>
   )

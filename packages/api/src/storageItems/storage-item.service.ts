@@ -10,7 +10,7 @@ import {
 } from "@inventory-app/types"
 
 import StorageItem from "./storage-item.model";
-import { MovementPayloadType } from '../movements/movement.plugin';
+import { MovementBodySchemaType } from '../movements/movement.plugin';
 
 const debug = parentDebug('app:services:storage-items')
 
@@ -45,10 +45,10 @@ class StorageItemService {
     return movements;
   }
 
-  static async addMovement({ ingredientId, amount, operation }: MovementPayloadType) {
+  static async addMovement({ ingredient, amount, operation }: MovementBodySchemaType) {
     try {
       const doc = await StorageItem.findOne({
-        ingredient: ingredientId
+        ingredient
       })
 
       const movement: IMovement = {
@@ -60,7 +60,7 @@ class StorageItemService {
 
       const storageItem = doc
         ? StorageItemService.updateFromMovement(doc, movement)
-        : StorageItemService.createFromMovement(ingredientId, movement);
+        : StorageItemService.createFromMovement(ingredient, movement);
 
       storageItem.movements.push(movement)
 
@@ -80,11 +80,11 @@ class StorageItemService {
     return doc;
   }
 
-  private static createFromMovement(ingredientId: string, movement: IMovement) {
+  private static createFromMovement(ingredient: string, movement: IMovement) {
     return new StorageItem({
       _id: new Types.ObjectId(),
       amount: movement.amount,
-      ingredient: new mongoose.Types.ObjectId(ingredientId),
+      ingredient: new mongoose.Types.ObjectId(ingredient),
     })
   }
 }

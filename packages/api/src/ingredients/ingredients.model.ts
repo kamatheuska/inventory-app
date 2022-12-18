@@ -46,8 +46,6 @@ const ingredientsSchema = new Schema<IIngredient, IngredientModel, IngredientIns
   autoIndex: false,
 });
 
-
-
 ingredientsSchema.methods.toDTO = function(): IngredientDTO {
   return {
     _id: this._id.toString(),
