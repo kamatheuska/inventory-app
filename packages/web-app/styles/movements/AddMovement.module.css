@@ -1,8 +1,8 @@
 .container {
-  padding-left: var(--inventory-page-padding);
-  padding-right: var(--inventory-page-padding);
+  padding-left: var(--page-padding);
+  padding-right: var(--page-padding);
   min-height: 80vh;
-  padding-top: var(--inventory-page-top-padding);
+  padding-top: var(--page-top-padding);
 
 }
 

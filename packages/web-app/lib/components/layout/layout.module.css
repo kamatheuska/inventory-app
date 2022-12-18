@@ -1,5 +1,6 @@
-.main {
-
-  padding-left: var(--inventory-page-padding);
-  padding-right: var(--inventory-page-padding);
+@media (min-width: 760px) {
+  .main {
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+  }
 }

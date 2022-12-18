@@ -14,7 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
-
+/* 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -23,14 +23,33 @@ a {
     color: white;
     background: black;
   }
-}
+} */
 
 :root {
-  --inventory-page-padding: 3rem;
-  --inventory-page-top-padding: 3rem;
-  --inventory-color-gray-light: rgb(229, 229, 229);
+  --page-padding: 3rem;
+  --page-top-padding: 3rem;
+  --page-body-max-width: 850px;
+  
+  /*
+  * Colors
+  */
+  --color-blue: hsl(195, 100%, 44%);
+  --color-blue-dark: hsl(195, 100%, 30%);
+  --color-lavander: hsl(346, 31%, 61%);
+  --color-midnight-green: hsl(194, 85%, 21%);
+  --color-aero-blue: hsl(132, 56%, 86%);
+  --color-violet: hsl(288, 77%, 12%);
+  --color-gray-light: hsl(0, 0%, 90%);
+  --color-gray: hsl(0, 0%, 73%);
+
+  --color-primary: var(--color-blue);
+  --color-secondary: var(--color-violet);
+  --color-danger: var(--color-lavander);
+  --color-link: var(--color-midnight-green);
+  --color-info: var(--color-aero-blue);
+
   /*
   * Cards
   */
-  --inventory-ingredient-card-height: 3rem;
+  --ingredient-card-height: 3rem;
 }

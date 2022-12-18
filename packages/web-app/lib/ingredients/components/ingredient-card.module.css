@@ -1,7 +1,7 @@
 .root {
-  min-height: var(--inventory-ingredient-card-height);
+  min-height: var(--ingredient-card-height);
   padding: 1.5rem;
-  border: 1px solid var(--inventory-color-gray-light)
+  border: 1px solid var(--color-gray-light)
 }
 .header {
   margin-bottom: 1rem;

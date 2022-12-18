@@ -9,7 +9,7 @@
   gap: 1rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 375px) {
   .grid {
     grid-template-columns: repeat(6, minmax(2rem, 1fr));
   }

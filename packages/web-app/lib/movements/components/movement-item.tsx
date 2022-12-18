@@ -15,7 +15,7 @@ export default function MovementItem ({ amount, ingredient, operation, createdAt
 
   const amountClasses = [
     styles.amount,
-    isAddOperation() && styles.background
+    isAddOperation() && styles.tag
   ]
   
   return (
