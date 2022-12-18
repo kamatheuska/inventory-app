@@ -19,7 +19,7 @@ export default function MovementItem ({ amount, ingredient, operation, createdAt
   ]
   
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-cy="movement-item">
       <div className={styles.icon}>
         <Image
           src={circlePlaceholder}

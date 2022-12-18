@@ -4,7 +4,7 @@ import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import Layout from '../lib/components/layout/layout';
 
-import ListMovements from '../lib/movements/components/list-movements';
+import MovementsList from '../lib/movements/components/movements-list';
 import { useFetchMovements } from '../lib/movements/movements.hooks';
 import { getIsLoading } from '../lib/movements/movementSlice';
 import styles from '../styles/Home.module.css'
@@ -15,7 +15,7 @@ const Home: NextPageWithLayout = () => {
   const isLoading = useSelector(getIsLoading);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-cy="home-page">
       <Head>
         <title>Home - Inventory App</title>
         <meta name="description" content="An app to keep your inventory in check" />
@@ -29,7 +29,7 @@ const Home: NextPageWithLayout = () => {
           </button>
         </Link>
         { isLoading && <div>Loading...</div>}
-        { !isLoading && <ListMovements />  }
+        { !isLoading && <MovementsList />  }
       </div>
     </div>
   )

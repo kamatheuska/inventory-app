@@ -27,7 +27,7 @@ export default function AddMovementForm () {
   }
 
   return (
-    <form className={styles.root} onSubmit={onSubmit}>
+    <form className={styles.root} onSubmit={onSubmit} data-cy="add-movement">
       <div>
         <label htmlFor="amount">Amount: </label>
         <input
