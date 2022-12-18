@@ -2,7 +2,10 @@ import Head from 'next/head'
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
+import Button from '../lib/components/buttons/button';
+import CircleButtonIcon from '../lib/components/buttons/circle-button-icon';
 import Layout from '../lib/components/layout/layout';
+import { IoAdd} from "react-icons/io5";
 
 import MovementsList from '../lib/movements/components/movements-list';
 import { useFetchMovements } from '../lib/movements/movements.hooks';
@@ -22,12 +25,19 @@ const Home: NextPageWithLayout = () => {
       </Head>
 
       <div className={styles.home}>
-        <h1>Movements</h1>
-        <Link href="/movements/add">
-          <button>
-            Add Movement
-          </button>
-        </Link>
+        <header>
+          <h1>Movements</h1>
+          <div>
+            <CircleButtonIcon
+              label='Add movement'
+              variant='primary'
+            >
+              <Link href="/movements/add">
+                <IoAdd size='30px' />
+              </Link>
+            </CircleButtonIcon>
+          </div>
+        </header>
         { isLoading && <div>Loading...</div>}
         { !isLoading && <MovementsList />  }
       </div>
