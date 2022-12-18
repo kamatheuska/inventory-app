@@ -47,6 +47,8 @@ a {
   --color-danger: var(--color-lavander);
   --color-link: var(--color-midnight-green);
   --color-info: var(--color-aero-blue);
+  
+  --color-primary-dark: var(--color-blue-dark);
 
   /*
   * Cards

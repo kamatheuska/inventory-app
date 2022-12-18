@@ -6,6 +6,7 @@ import AutoLoad from '@fastify/autoload';
 import { AppOptions, LoggerOptions } from './app.types';
 import movementPlugin from './movements/movement.plugin';
 import ingredientsPlugin from './ingredients/ingredients.plugin';
+import storageItemPlugin from './storageItems/storage-item.plugin';
 
 
 const app: FastifyPluginAsync<AppOptions> = async function app(fastify, opts) {
@@ -16,6 +17,7 @@ const app: FastifyPluginAsync<AppOptions> = async function app(fastify, opts) {
 
   await fastify.register(movementPlugin);
   await fastify.register(ingredientsPlugin);
+  await fastify.register(storageItemPlugin);
 };
 
 function getOptions (): AppOptions {

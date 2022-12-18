@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '../lib/components/buttons/button';
 import CircleButtonIcon from '../lib/components/buttons/circle-button-icon';
 import Layout from '../lib/components/layout/layout';
 import { IoAdd} from "react-icons/io5";
@@ -18,7 +17,7 @@ const Home: NextPageWithLayout = () => {
   const isLoading = useSelector(getIsLoading);
 
   return (
-    <div className={styles.container} data-cy="home-page">
+    <div data-cy="home-page">
       <Head>
         <title>Home - Inventory App</title>
         <meta name="description" content="An app to keep your inventory in check" />

@@ -5,7 +5,8 @@ import {
   IMovement,
   MovementDTO,
   OperationOptions,
-  StorageItemDocument
+  StorageItemDocument,
+  StorageItemDTO
 } from "@inventory-app/types"
 
 import StorageItem from "./storage-item.model";
@@ -14,6 +15,12 @@ import { MovementPayloadType } from '../movements/movement.plugin';
 const debug = parentDebug('app:services:storage-items')
 
 class StorageItemService {
+  static async findAll(): Promise<StorageItemDTO[]> {
+    const docs = await StorageItem.find({}).populate('ingredient').exec();
+
+    return docs.map(item => item.toDTO());
+  }
+
   static async findAllMovements(): Promise<MovementDTO[]> {
     const docs = await StorageItem.find({}).populate('ingredient').exec();
 

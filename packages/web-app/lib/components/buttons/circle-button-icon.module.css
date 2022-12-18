@@ -16,6 +16,9 @@
   background-color: var(--color-gray-light);
   border: none;
   --ionicon-stroke-weight: 644px;
+  transition-property: background-color;
+  transition-timing-function: ease-in;
+  transition-duration: 100ms;
 }
 
 .button:hover {
@@ -48,5 +51,5 @@
 }
 
 .primary:hover {
-  background-color: var(--color-primary-darl);
+  background-color: var(--color-primary-dark);
 }

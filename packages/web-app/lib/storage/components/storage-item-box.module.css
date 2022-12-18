@@ -1,0 +1,19 @@
+.root {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px var(--color-gray);
+}
+
+.root h3 {
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.root p {
+  margin: 0;
+  font-size: 0.7em;
+}

@@ -18,3 +18,7 @@
   justify-self: end;
   grid-area: 'nav';
 }
+
+.nav a:not(:last-child) {
+  margin-right: 30px;
+}

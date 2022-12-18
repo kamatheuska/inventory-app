@@ -10,6 +10,7 @@ export default function Navbar() {
         </Link>
       </div>
       <nav className={styles.nav}>
+        <Link href="/storage">Storage</Link>
         <Link href="/ingredients">Ingredients</Link>
       </nav>
 

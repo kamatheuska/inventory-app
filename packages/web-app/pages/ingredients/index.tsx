@@ -19,10 +19,10 @@ const Ingredients: NextPageWithLayout = () => {
         <meta name="description" content="List of ingredients of the inventory app" />
       </Head>
 
-      <main className={styles.main}>
+      <div className={styles.main}>
         { isLoading && <div>Loading...</div>}
         { !isLoading && <ListIngredients />}
-      </main>
+      </div>
     </div>
   )
 }
