@@ -1,5 +1,5 @@
-import '../styles/reset.css'
 import '../styles/globals.css'
+import 'modern-normalize/modern-normalize.css';
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import { wrapper } from '../lib/store';
