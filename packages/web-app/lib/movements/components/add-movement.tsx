@@ -1,18 +1,17 @@
 import React, { FormEvent, useState } from "react";
 import { addMovement } from "../movements.rest";
-import { IMovement } from "../movements.types";
 import { useForm } from "react-hook-form";
 import styles from './add-movement.module.css'
 import IngridientSelector from "../../ingredients/components/ingredient-selector";
-import { IIngredient } from "@inventory-app/types";
+import { IngredientDTO, MovementDTO } from "@inventory-app/types";
 
 export default function AddMovementForm () {
-  const { register, handleSubmit, setValue } = useForm<IMovement>();
+  const { register, handleSubmit, setValue } = useForm<MovementDTO>();
 
   const onSubmit = handleSubmit(async (data) => {
-    const movement: IMovement = {
+    const movement: MovementDTO = {
       amount: data.amount,
-      ingredientId: data.ingredientId,
+      ingredient: data.ingredient,
       operation: data.operation,
     }
 
@@ -23,8 +22,8 @@ export default function AddMovementForm () {
     }
   })
 
-  const onSelect = (ingredient: IIngredient) => {
-    setValue('ingredientId', ingredient._id)
+  const onSelect = (ingredient: IngredientDTO) => {
+    setValue('ingredient', ingredient._id)
   }
 
   return (
@@ -42,7 +41,7 @@ export default function AddMovementForm () {
         />
       </div>
       <div>
-        <label htmlFor="ingredientId">Operation: </label>
+        <label htmlFor="operation">Operation: </label>
         <select {...register('operation', { required: true }) }>
           <option value="add">Add</option>
           <option value="remove">Remove</option>

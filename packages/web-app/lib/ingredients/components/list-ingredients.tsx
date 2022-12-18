@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux'
-import { IIngredient } from "@inventory-app/types"
+import { IngredientDTO } from "@inventory-app/types"
 import { getAll } from '../ingredientSlice';
 import IngredientCard from './ingredient-card';
 import styles from './list-ingredients.module.css'
 
 type Props = {
-  onSelect?: (ingredient: IIngredient) => void
+  onSelect?: (ingredient: IngredientDTO) => void
 }
 
 export default function ListIngredients ({ onSelect }: Props) {

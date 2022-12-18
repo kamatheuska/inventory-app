@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "../store";
-import { IIngredient } from "@inventory-app/types"
+import { IngredientDTO } from "@inventory-app/types"
 
 export interface IngredientsState {
-  list: IIngredient[],
+  list: IngredientDTO[],
   isLoading: boolean,
 }
 
@@ -16,7 +16,7 @@ export const ingredientSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
-    setList(state, action: PayloadAction<IIngredient[]>) {
+    setList(state, action: PayloadAction<IngredientDTO[]>) {
       state.list = action.payload;
     },
     startRequest(state) {

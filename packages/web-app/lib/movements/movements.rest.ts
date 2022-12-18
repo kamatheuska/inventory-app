@@ -1,8 +1,8 @@
 import request from "../utils/rest";
-import { IMovement, MovementDTO } from "@inventory-app/types"
+import { MovementDTO } from "@inventory-app/types"
 import mapper from "./movements.mapper";
 
-export async function addMovement(movement: IMovement) {
+export async function addMovement(movement: MovementDTO) {
   const body = JSON.stringify(movement);
 
   return request({

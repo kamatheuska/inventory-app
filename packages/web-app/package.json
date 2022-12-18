@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "PORT=3001 next dev",
+    "dev": "concurrently -n NEXT,TS -c magenta,cyan \"next dev -p 3001\" \"yarn build:ts --watch\"",
+    "build:ts": "tsc --noEmit --incremental --preserveWatchOutput --pretty",
     "build": "next build",
     "start": "PORT=3001 next start",
+    "cypress": "cypress open",
     "lint": "next lint"
   },
   "dependencies": {
@@ -25,6 +27,8 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
-    "@types/react-redux": "^7.1.24"
+    "@types/react-redux": "^7.1.24",
+    "concurrently": "^7.6.0",
+    "cypress": "^12.1.0"
   }
 }

@@ -1,7 +1,7 @@
 import request from "../utils/rest";
-import { IIngredient } from "@inventory-app/types"
+import { IngredientDTO } from "@inventory-app/types"
 
-export async function getAllIngredients(): Promise<IIngredient[]> {
+export async function getAllIngredients(): Promise<IngredientDTO[]> {
   const data = await request({
     endpoint: '/api/ingredients',
     headers: {
