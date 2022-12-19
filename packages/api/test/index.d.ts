@@ -1,1 +1,1 @@
-declare module 'fastify-cli/helper.js'
+declare module 'fastify-cli/helper.js';

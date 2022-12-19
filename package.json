@@ -11,5 +11,17 @@
     "packages/web-app",
     "packages/types"
   ],
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "husky": "^8.0.2"
+  },
+  "scripts": {
+    "postinstall": "husky install",
+    "lint": "yarn lint:api && yarn lint:web-app",
+    "lint:api": "yarn workspace @inventory-app/api lint",
+    "lint:web-app": "yarn workspace @inventory-app/web-app lint",
+    "test:ci": "yarn test:api && yarn test:web-app",
+    "test:api": "yarn workspace @inventory-app/api test:ci",
+    "test:web-app": "yarn workspace @inventory-app/web-app test:ci"
+  }
 }

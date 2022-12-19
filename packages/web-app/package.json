@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently -n NEXT,TS -c magenta,cyan \"next dev -p 3001\" \"yarn build:ts --watch\"",
-    "build:ts": "tsc --noEmit --incremental --preserveWatchOutput --pretty",
-    "build": "next build",
+    "app:dev": "concurrently -n NEXT,TS -c magenta,cyan \"next dev -p 3001\" \"yarn build:ts --watch\"",
+    "ts": "tsc --noEmit --incremental --preserveWatchOutput --pretty",
+    "prebuild": "yarn lint",
+    "build": "next build && yarn test",
     "start": "PORT=3001 next start",
     "cypress": "cypress open",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:ci": "echo \"No test for now\""
   },
   "dependencies": {
     "@inventory-app/types": "1.0.0",

@@ -1,22 +1,22 @@
-import { Types } from "mongoose";
+import { Types } from 'mongoose';
 
 export interface IIngredient {
-  _id: Types.ObjectId;
-  name: string,
-  measureUnit: MeasureUnitOptions,
-  category: string,
-  description?: string,
-  inventory?: InventoryDetails,
-  tags?: Tags
+    _id: Types.ObjectId;
+    name: string;
+    measureUnit: MeasureUnitOptions;
+    category: string;
+    description?: string;
+    inventory?: InventoryDetails;
+    tags?: Tags;
 }
 
 interface Tags {
-  label: string;
+    label: string;
 }
 export interface InventoryDetails {
-  minAmount?: number,
-  note?: string,
-  shopAt?: string,
+    minAmount?: number;
+    note?: string;
+    shopAt?: string;
 }
 
 export type MeasureUnitOptions = 'kg' | 'gr' | 'u' | 'lt';
