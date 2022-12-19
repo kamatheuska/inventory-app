@@ -30,6 +30,7 @@ class StorageItemService {
       return [
         ...acc,
         ...storageItem.movements.map(movement => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const dto = (movement as any).toDTO() as MovementDTO;
 
           return {

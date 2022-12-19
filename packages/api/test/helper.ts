@@ -1,4 +1,4 @@
-const helper = require('fastify-cli/helper.js')
+import * as helper from 'fastify-cli/helper.js'
 import { FastifyInstance } from 'fastify';
 import mongoose from 'mongoose';
 import * as path from 'path'

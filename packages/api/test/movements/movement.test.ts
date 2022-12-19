@@ -7,13 +7,14 @@ import { build } from '../helper'
 import Movement from '../../src/movements/movement.model'
 import StorageItem from '../../src/storageItems/storage-item.model'
 import { getMockedStorageItems } from '../../src/storageItems/storage-item.mocks'
-import { MovementPayloadType } from '../../src/movements/movement.plugin'
+import { MovementBodySchemaType } from '../../src/movements/movement.plugin'
 
 async function cleanDb() {
   await Movement.deleteMany({})
   await StorageItem.deleteMany({})
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function fetchEntity<T>(Entity: Model<T>, filter: any) {
   const count = await Entity.countDocuments()
   const instance = await Entity.findOne(filter)
@@ -27,7 +28,6 @@ async function fetchEntity<T>(Entity: Model<T>, filter: any) {
   }  
 }
 
-// @ts-ignore
 test('Movements: POST /api/movements/new', { skip: false }, async (t) => {
   const app = await build()
   const payloads = getMockedMovementPayloads();
@@ -47,7 +47,7 @@ test('Movements: POST /api/movements/new', { skip: false }, async (t) => {
       }
     })
   
-    const itemEntity = await fetchEntity(StorageItem, { ingredientId: payloads[0].ingredientId })
+    const itemEntity = await fetchEntity(StorageItem, { ingredient: payloads[0].ingredient })
     const item = itemEntity.instance as unknown as IStorageItem;
     const itemCount = itemEntity.count;
     
@@ -61,7 +61,6 @@ test('Movements: POST /api/movements/new', { skip: false }, async (t) => {
   }
 })
 
-// @ts-ignore
 test('Movements: POST /api/movements/new to an existing StorageItem', { skip: false }, async (t) => {
   const app = await build()
   const payloads = getMockedMovementPayloads();
@@ -81,7 +80,7 @@ test('Movements: POST /api/movements/new to an existing StorageItem', { skip: fa
       }
     })
   
-    const itemEntity = await fetchEntity(StorageItem, { ingredientId: payloads[0].ingredientId })
+    const itemEntity = await fetchEntity(StorageItem, { ingredient: payloads[0].ingredient })
     const item = itemEntity.instance as unknown as IStorageItem;
     const itemCount = itemEntity.count;
     
@@ -93,7 +92,7 @@ test('Movements: POST /api/movements/new to an existing StorageItem', { skip: fa
   }
 
   try {
-    const payload: MovementPayloadType =  {
+    const payload: MovementBodySchemaType =  {
       ...payloads[0],
       amount: 2000,
     }
@@ -107,7 +106,7 @@ test('Movements: POST /api/movements/new to an existing StorageItem', { skip: fa
       }
     })
   
-    const itemEntity = await fetchEntity(StorageItem, { ingredientId: payloads[0].ingredientId })
+    const itemEntity = await fetchEntity(StorageItem, { ingredient: payloads[0].ingredient })
     const item = itemEntity.instance as unknown as IStorageItem;
     const itemCount = itemEntity.count;
     
