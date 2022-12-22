@@ -1,10 +1,11 @@
 {
   "name": "@inventory-app/types",
   "version": "1.0.0",
-  "description": "Shared types for inventory app",
+  "description": "Shared constants and types for inventory app",
   "author": "Nicolas Ramirez <nico9017@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/mongoose": "^5.11.97"
-  }
+  },
+  "dependencies": {}
 }

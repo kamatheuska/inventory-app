@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [],
+      "label": "npm: dev",
+      "detail": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js"
+    },
+    {
+      "type": "npm",
+      "script": "debug",
+      "group": "rebuild",
+      "problemMatcher": [],
+      "label": "npm: debug",
+      "detail": "node --inspect-brk=9229 ./node_modules/.bin/fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js --debug-port=9229"
+    }
+  ]
+}

@@ -3,8 +3,8 @@ import { Static, Type } from '@sinclair/typebox';
 import StorageItemService from '../storageItems/storage-item.service';
 
 const Query = Type.Object({
-    limit: Type.String(),
-    currentPage: Type.String(),
+    limit: Type.Number({ default: 10 }),
+    currentPage: Type.Number({ default: 0 }),
 });
 
 const MovementBodySchema = Type.Object({
@@ -13,15 +13,18 @@ const MovementBodySchema = Type.Object({
     operation: Type.String(),
 });
 
-type Querystring = Static<typeof Query>;
+export type Querystring = Static<typeof Query>;
 export type MovementBodySchemaType = Static<typeof MovementBodySchema>;
 
 async function movementPlugin(fastify: FastifyInstance) {
     fastify.route<{ Querystring: Querystring }>({
         method: 'GET',
         url: '/api/movements',
-        handler: async () => {
-            return StorageItemService.findAllMovements();
+        schema: {
+            querystring: Query,
+        },
+        handler: async (req) => {
+            return StorageItemService.findAllMovements(req.query);
         },
     });
 

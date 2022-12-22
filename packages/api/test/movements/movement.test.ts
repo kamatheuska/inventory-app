@@ -2,15 +2,16 @@ import { test } from 'tap';
 import { Model } from 'mongoose';
 import { IStorageItem } from '@inventory-app/types';
 
-import { getMockedMovementPayloads, getMockedMovements } from '../../src/movements/movement.mock';
+import { getMockedMovementPayloads } from '../../src/movements/movement.mock';
 import { build } from '../helper';
-import Movement from '../../src/movements/movement.model';
 import StorageItem from '../../src/storageItems/storage-item.model';
 import { getMockedStorageItems } from '../../src/storageItems/storage-item.mocks';
 import { MovementBodySchemaType } from '../../src/movements/movement.plugin';
+import { getMockedIngredients } from '../../src/ingredients/ingredients.mock';
+import Ingredients from '../../src/ingredients/ingredients.model';
 
 async function cleanDb() {
-    await Movement.deleteMany({});
+    await Ingredients.deleteMany({});
     await StorageItem.deleteMany({});
 }
 
@@ -126,8 +127,9 @@ test('Movements: POST /api/movements/new to an existing StorageItem', { skip: fa
 });
 
 test('Movements: GET /api/movements', { skip: false }, async (t) => {
-    const movements = getMockedMovements();
-    const storageItems = getMockedStorageItems(movements);
+    const ingredients = getMockedIngredients(10);
+    const storageItems = getMockedStorageItems(20, ingredients);
+
     const app = await build();
 
     t.teardown(async () => {
@@ -135,9 +137,11 @@ test('Movements: GET /api/movements', { skip: false }, async (t) => {
         await app.close();
     });
     try {
-        const result = await StorageItem.insertMany(storageItems);
+        const resultIngredients = await Ingredients.insertMany(ingredients);
+        const resultStorageItems = await StorageItem.insertMany(storageItems);
 
-        t.equal(result.length, 3, 'should insert 3 mocked storage items');
+        t.equal(resultIngredients.length, 10, 'should insert 3 mocked storage items');
+        t.equal(resultStorageItems.length, 20, 'should insert 3 mocked storage items');
 
         const res = await app.inject({
             url: '/api/movements',
@@ -149,8 +153,10 @@ test('Movements: GET /api/movements', { skip: false }, async (t) => {
 
         const body = res.json();
 
-        t.equal(body.length, 9, 'should return the same amount of movements as mocked');
-        t.equal(body[1].amount, 150, 'should be equal to mocked movement amount');
+        t.equal(body.length, 10, 'should return the same amount of movements as mocked');
+        t.type(body[1].amount, 'number', 'should have a prop amount of type number');
+        t.type(body[1].ingredient, 'object', 'should have a prop ingredient of type object');
+        t.type(body[1].ingredient.category, 'string', 'should have a prop ingredient.category of type string');
     } catch (error) {
         t.error(error);
     } finally {

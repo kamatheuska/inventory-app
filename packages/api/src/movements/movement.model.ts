@@ -1,17 +1,10 @@
-import { Schema, model, Types } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-import {
-    IMovement,
-    IngredientDTO,
-    MovementDTO,
-    MovementInstanceMethods,
-    MovementModel,
-    OperationOptions,
-} from '@inventory-app/types';
+import { IMovement, MovementDTO, MovementModel, OperationOptions } from '@inventory-app/types';
 
 const operations: OperationOptions[] = ['add', 'remove'];
 
-export const movementSchema = new Schema<IMovement, MovementModel, MovementInstanceMethods>(
+export const movementSchema = new Schema<IMovement, MovementModel>(
     {
         _id: Schema.Types.ObjectId,
         ingredient: {
@@ -35,15 +28,10 @@ export const movementSchema = new Schema<IMovement, MovementModel, MovementInsta
     }
 );
 
-movementSchema.methods.toDTO = function toDTO(): MovementDTO {
-    const ingredient: string | IngredientDTO =
-        this.ingredient instanceof Types.ObjectId
-            ? (this.ingredient as Types.ObjectId).toString()
-            : this.ingredient.toDTO();
-
+movementSchema.methods.toJSON = function toJSON(): MovementDTO {
     return {
         _id: this._id.toString(),
-        ingredient,
+        ingredient: this.ingredient,
         amount: this.amount,
         operation: this.operation,
         createdAt: this.createdAt,

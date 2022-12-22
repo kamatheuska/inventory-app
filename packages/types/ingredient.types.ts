@@ -1,10 +1,14 @@
 import { Model, Types } from "mongoose";
 
+export type IngredientCategories = 'fruits' | 'vegetables';
+export type MeasureUnits = 'gr' | 'kg' | 'lt' | 'u';
+
+
 export interface IIngredient {
   _id: Types.ObjectId;
   name: string,
-  measureUnit: MeasureUnitOptions,
-  category: string,
+  measureUnit: MeasureUnits,
+  category: IngredientCategories,
   description?: string,
   inventory?: InventoryDetails,
   tags?: Tags,
@@ -19,16 +23,8 @@ export interface InventoryDetails {
   shopAt?: string,
 }
 
-export type MeasureUnitOptions = 'kg' | 'gr' | 'u' | 'lt';
-export type IngredientCategoryOptions = 'fruits' | 'vegetables';
-
 export interface IngredientDTO extends Omit<IIngredient, '_id'> {
   _id: string,
 };
 
-
-export interface IngredientInstanceMethods {
-  toDTO: () => IngredientDTO
-}
-
-export interface IngredientModel extends Model<IIngredient, {}, IngredientInstanceMethods> {}
+export interface IngredientModel extends Model<IIngredient> {}

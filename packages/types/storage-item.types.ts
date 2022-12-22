@@ -1,5 +1,5 @@
 import { Document, Model, Types } from "mongoose";
-import { IMovement, IngredientDTO }from "@inventory-app/types"
+import { IMovement, IngredientDTO }from "../types"
 
 export interface IStorageItem {
   _id: Types.ObjectId,
@@ -19,8 +19,5 @@ export interface StorageItemDTO  {
   ingredient: string | IngredientDTO,
 };
 
-export interface StorateItemInstanceMethods {
-  toDTO: () => StorageItemDTO
-}
 
-export interface StorageItemModel extends Model<IStorageItem, {}, StorateItemInstanceMethods> {}
+export interface StorageItemModel extends Model<IStorageItem> {}

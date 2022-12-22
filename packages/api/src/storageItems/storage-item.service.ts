@@ -1,43 +1,34 @@
 import { default as parentDebug } from 'debug';
 import * as createHttpError from 'http-errors';
 import mongoose, { Types } from 'mongoose';
-import { IMovement, MovementDTO, OperationOptions, StorageItemDocument, StorageItemDTO } from '@inventory-app/types';
+import { IMovement, OperationOptions, StorageItemDocument } from '@inventory-app/types';
 
 import StorageItem from './storage-item.model';
-import { MovementBodySchemaType } from '../movements/movement.plugin';
+import { MovementBodySchemaType, Querystring } from '../movements/movement.plugin';
+import { getMovementsAggrStages, sortOrder } from './storage-item.aggregations';
 
 const debug = parentDebug('app:services:storage-items');
 
 class StorageItemService {
-    static async findAll(): Promise<StorageItemDTO[]> {
+    static async findAll(): Promise<any> {
         const docs = await StorageItem.find({}).populate('ingredient').exec();
 
-        return docs.map((item) => item.toDTO());
+        return docs;
     }
 
-    static async findAllMovements(): Promise<MovementDTO[]> {
-        const docs = await StorageItem.find({}).populate('ingredient').exec();
+    static async findAllMovements({ limit, currentPage }: Querystring): Promise<any> {
+        const stages = getMovementsAggrStages({
+            limit,
+            skip: currentPage * limit,
+            sort: sortOrder.DESCENDING,
+        });
 
-        const movements: MovementDTO[] = docs.reduce((acc, storageItem) => {
-            const item = storageItem.toDTO();
+        const aggregate = await StorageItem.aggregate(stages);
+        const { result } = aggregate[0];
 
-            return [
-                ...acc,
-                ...storageItem.movements.map((movement) => {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const dto = (movement as any).toDTO() as MovementDTO;
+        debug(result);
 
-                    return {
-                        ...dto,
-                        ingredient: item.ingredient,
-                    };
-                }),
-            ];
-        }, [] as MovementDTO[]);
-
-        debug(movements);
-
-        return movements;
+        return result;
     }
 
     static async addMovement({ ingredient, amount, operation }: MovementBodySchemaType) {

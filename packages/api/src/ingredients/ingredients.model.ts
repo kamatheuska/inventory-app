@@ -1,18 +1,8 @@
 import { Schema, model } from 'mongoose';
-import {
-    IIngredient,
-    IngredientCategoryOptions,
-    IngredientDTO,
-    IngredientInstanceMethods,
-    IngredientModel,
-    MeasureUnitOptions,
-} from '@inventory-app/types';
+import { IIngredient, IngredientDTO, IngredientModel } from '@inventory-app/types';
+import { ingredientCategories, measureUnits } from './ingredients.constants';
 
-const measureUnits: MeasureUnitOptions[] = ['gr', 'kg', 'lt', 'u'];
-
-const categories: IngredientCategoryOptions[] = ['fruits', 'vegetables'];
-
-const ingredientsSchema = new Schema<IIngredient, IngredientModel, IngredientInstanceMethods>(
+const ingredientsSchema = new Schema<IIngredient, IngredientModel>(
     {
         _id: Schema.Types.ObjectId,
         name: {
@@ -23,7 +13,7 @@ const ingredientsSchema = new Schema<IIngredient, IngredientModel, IngredientIns
         description: String,
         category: {
             type: String,
-            enum: categories,
+            enum: Object.values(ingredientCategories),
             required: true,
         },
         inventory: {
@@ -38,9 +28,9 @@ const ingredientsSchema = new Schema<IIngredient, IngredientModel, IngredientIns
         ],
         measureUnit: {
             type: String,
-            enum: measureUnits,
+            enum: Object.values(measureUnits),
             required: true,
-            default: 'gr' as MeasureUnitOptions,
+            default: measureUnits.GRAM,
         },
     },
     {
@@ -48,7 +38,7 @@ const ingredientsSchema = new Schema<IIngredient, IngredientModel, IngredientIns
     }
 );
 
-ingredientsSchema.methods.toDTO = function (): IngredientDTO {
+ingredientsSchema.methods.toJSON = function (): IngredientDTO {
     return {
         _id: this._id.toString(),
         category: this.category,

@@ -13,11 +13,8 @@ export interface IMovement {
 
 export interface MovementDTO extends Omit<IMovement, '_id' | 'ingredient' > {
   _id?: string,
-  ingredient: string | IngredientDTO,
+  ingredient: IngredientDTO,
 };
 
-export interface MovementInstanceMethods {
-  toDTO: () => MovementDTO
-}
 
-export interface MovementModel extends Model<IMovement, {}, MovementInstanceMethods> {}
+export interface MovementModel extends Model<IMovement> {}

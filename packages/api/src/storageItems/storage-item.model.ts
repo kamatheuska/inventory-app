@@ -1,16 +1,10 @@
-import { Schema, model, Types } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-import {
-    IngredientDTO,
-    IStorageItem,
-    StorageItemDTO,
-    StorageItemModel,
-    StorateItemInstanceMethods,
-} from '@inventory-app/types';
+import { IStorageItem, StorageItemDTO, StorageItemModel } from '@inventory-app/types';
 
 import { movementSchema } from '../movements/movement.model';
 
-const storageItemSchema = new Schema<IStorageItem, StorageItemModel, StorateItemInstanceMethods>(
+const storageItemSchema = new Schema<IStorageItem, StorageItemModel>(
     {
         _id: Schema.Types.ObjectId,
         ingredient: {
@@ -30,15 +24,10 @@ const storageItemSchema = new Schema<IStorageItem, StorageItemModel, StorateItem
     }
 );
 
-storageItemSchema.methods.toDTO = function (): StorageItemDTO {
-    const ingredient: string | IngredientDTO =
-        this.ingredient instanceof Types.ObjectId
-            ? (this.ingredient as Types.ObjectId).toString()
-            : this.ingredient?.toDTO();
-
+storageItemSchema.methods.toJSON = function (): StorageItemDTO {
     return {
         _id: this._id.toString(),
-        ingredient: ingredient,
+        ingredient: this.ingredient,
         amount: this.amount,
         movements: this.movements,
     };
