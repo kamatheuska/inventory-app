@@ -1,8 +1,8 @@
 import request from "../utils/rest";
-import { MovementDTO } from "@inventory-app/types"
+import { MovementDTO, MovementViewType } from "@inventory-app/types"
 import mapper from "./movements.mapper";
 
-export async function addMovement(movement: MovementDTO) {
+export async function addMovement(movement: MovementViewType) {
   const body = JSON.stringify(movement);
 
   return request({
@@ -15,7 +15,7 @@ export async function addMovement(movement: MovementDTO) {
   })
 }
 
-export async function getAllMovements(): Promise<MovementDTO[]> {
+export async function getAllMovements(): Promise<MovementViewType[]> {
   const data = await request({
     endpoint: '/api/movements',
     headers: {

@@ -1,7 +1,8 @@
+import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { getStorageItems } from "./storage-item.rest";
-import { finishRequest, setList, startRequest } from "./storageItemSlice";
+import { getStorageItem, getStorageItems } from "./storage-item.rest";
+import { finishRequest, setCurrent, setList, startRequest } from "./storageItemSlice";
 
 export function useFetchStorageItems() {
   const didFetch = useRef(false);
@@ -26,4 +27,35 @@ export function useFetchStorageItems() {
       didFetch.current = true;
     }
   }, [dispatch])
+}
+
+export function useFetchStorageItem() {
+  const router = useRouter();
+  const {_id} = router.query;
+  const didFetch = useRef(false);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    const fetchStorageItem = async (id: string) => {
+      dispatch(startRequest());
+      try {
+        const current = await getStorageItem(id);
+        dispatch(setCurrent(current));
+      } catch (error) {
+        console.error(error)
+      } finally {
+        dispatch(finishRequest());
+      }
+    }
+
+    if (!_id || typeof _id !== 'string') return;
+
+    if (!didFetch.current) {
+      fetchStorageItem(_id)
+    }
+
+    return () => {
+      didFetch.current = true;
+    }
+  }, [dispatch, _id])
 }

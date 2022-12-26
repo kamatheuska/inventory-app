@@ -9,8 +9,6 @@ import styles from '../../styles/Storage.module.css'
 import { NextPageWithLayout } from '../_app';
 
 const Storage: NextPageWithLayout = () => {
-  useFetchStorageItems();
-  const isLoading = useSelector(getIsLoading);
 
   return (
     <div className={styles.container}>
@@ -20,10 +18,7 @@ const Storage: NextPageWithLayout = () => {
       </Head>
 
       <div className={styles.content}>
-        { isLoading
-          ? <div>Loading...</div>
-          : <StorageItemList />
-        }
+          <StorageItemList />
       </div>
     </div>
   )

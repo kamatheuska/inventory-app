@@ -1,10 +1,10 @@
-import { IngredientDTO } from "@inventory-app/types"
+import { IngredientViewType } from "@inventory-app/types"
 
 import styles from './ingredient-card.module.css'
 
 type Props = {
-  ingredient: IngredientDTO,
-  onSelect?: (ingredient: IngredientDTO) => void
+  ingredient: IngredientViewType,
+  onSelect?: (ingredient: IngredientViewType) => void
 }
 export default function IngredientCard ({ ingredient, onSelect }: Props) {
   const handleSelect = () => {

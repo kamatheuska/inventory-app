@@ -1,20 +1,20 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import styles from './button.module.css'
-import { IoAccessibilityOutline } from "react-icons/io5";
 
 type Props = {
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],
   label: string
+  onClick?: MouseEventHandler<HTMLButtonElement>,
 }
 
 export default function Button({
   type = 'button',
   label,
+  onClick
 }: Props) {
   return (
     <>
-      <IoAccessibilityOutline></IoAccessibilityOutline>
-      <button type={type} className={styles.root}>
+      <button type={type} className={styles.root} onClick={onClick}>
         {label}
       </button>
     </>

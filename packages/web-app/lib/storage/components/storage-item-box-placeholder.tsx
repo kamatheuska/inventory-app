@@ -1,4 +1,3 @@
-import { StorageItemDTO, IngredientDTO } from "@inventory-app/types";
 import styles from './storage-item-box.module.css'
 
 import { IoAdd} from "react-icons/io5";

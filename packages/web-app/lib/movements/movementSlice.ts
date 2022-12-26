@@ -1,9 +1,9 @@
-import { MovementDTO } from "@inventory-app/types";
+import {  MovementViewType } from "@inventory-app/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "../store";
 
 export interface MovementsState {
-  list: MovementDTO[],
+  list: MovementViewType[],
   isLoading: boolean,
 }
 
@@ -16,7 +16,7 @@ export const ingredientSlice = createSlice({
   name: 'movements',
   initialState,
   reducers: {
-    setList(state, action: PayloadAction<MovementDTO[]>) {
+    setList(state, action: PayloadAction<MovementViewType[]>) {
       state.list = action.payload;
     },
     startRequest(state) {

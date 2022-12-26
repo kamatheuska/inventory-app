@@ -3,13 +3,13 @@ import { addMovement } from "../movements.rest";
 import { useForm } from "react-hook-form";
 import styles from './add-movement.module.css'
 import IngridientSelector from "../../ingredients/components/ingredient-selector";
-import { IngredientDTO, MovementDTO } from "@inventory-app/types";
+import { IngredientViewType, MovementViewType } from "@inventory-app/types";
 
 export default function AddMovementForm () {
-  const { register, handleSubmit, setValue } = useForm<MovementDTO>();
+  const { register, handleSubmit, setValue } = useForm<MovementViewType>();
 
   const onSubmit = handleSubmit(async (data) => {
-    const movement: MovementDTO = {
+    const movement: MovementViewType = {
       amount: data.amount,
       ingredient: data.ingredient,
       operation: data.operation,
@@ -22,7 +22,7 @@ export default function AddMovementForm () {
     }
   })
 
-  const onSelect = (ingredient: IngredientDTO) => {
+  const onSelect = (ingredient: IngredientViewType) => {
     setValue('ingredient', ingredient._id)
   }
 

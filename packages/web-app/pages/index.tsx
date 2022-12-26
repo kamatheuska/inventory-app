@@ -8,14 +8,18 @@ import { IoAdd} from "react-icons/io5";
 
 import MovementsList from '../lib/movements/components/movements-list';
 import { useFetchMovements } from '../lib/movements/movements.hooks';
-import { getIsLoading } from '../lib/movements/movementSlice';
+import { getAll, getIsLoading, setList } from '../lib/movements/movementSlice';
 import styles from '../styles/Home.module.css'
 import { NextPageWithLayout } from './_app';
+import { getAllMovements } from '../lib/movements/movements.rest';
+import { useDispatch } from 'react-redux';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { MovementViewType } from '@inventory-app/types';
 
-const Home: NextPageWithLayout = () => {
-  useFetchMovements();
-  const isLoading = useSelector(getIsLoading);
-
+function Home ({ movements }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const dispatch = useDispatch()
+  dispatch(setList(movements))
+  
   return (
     <div data-cy="home-page">
       <Head>
@@ -37,11 +41,24 @@ const Home: NextPageWithLayout = () => {
             </CircleButtonIcon>
           </div>
         </header>
-        { isLoading && <div>Loading...</div>}
-        { !isLoading && <MovementsList />  }
+        <MovementsList />
       </div>
     </div>
   )
+}
+
+interface IProps {
+  movements: MovementViewType[]
+}
+
+export const getServerSideProps: GetServerSideProps<IProps> = async () => {
+  const movements: MovementViewType[] = await getAllMovements();
+
+  return {
+    props: {
+      movements
+    }
+  }
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {

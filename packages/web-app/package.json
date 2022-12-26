@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "app:dev": "concurrently -n NEXT,TS -c magenta,cyan \"next dev -p 3001\" \"yarn build:ts --watch\"",
+    "app:dev": "concurrently -n NEXT,TS -c magenta,cyan \"next dev -p 3000\" \"yarn ts --watch\"",
     "ts": "tsc --noEmit --incremental --preserveWatchOutput --pretty",
     "prebuild": "yarn lint",
     "build": "next build && yarn test",
-    "start": "PORT=3001 next start",
+    "start": "PORT=3000 next start",
     "cypress": "cypress open",
     "lint": "next lint",
     "test:ci": "echo \"No test for now\""

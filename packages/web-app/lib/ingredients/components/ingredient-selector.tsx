@@ -1,19 +1,19 @@
 import { MouseEventHandler, useState } from "react"
-import { IngredientDTO } from "@inventory-app/types"
+import { IngredientViewType } from "@inventory-app/types"
 import IngredientCard from "./ingredient-card"
 
 import ListIngredients from "./list-ingredients"
 
 type Props = {
-  onSelect: (ingredient: IngredientDTO) => void
+  onSelect: (ingredient: IngredientViewType) => void
 }
 
 export default function IngridientSelector ({ onSelect }: Props) {
   const [showList, setShowList] = useState(false);
 
-  const [selected, setSelected] = useState<IngredientDTO | null>(null)
+  const [selected, setSelected] = useState<IngredientViewType | null>(null)
 
-  const onIngridientSelect = (ingredient: IngredientDTO) => {
+  const onIngridientSelect = (ingredient: IngredientViewType) => {
     setShowList(false);
     setSelected(ingredient);
     onSelect(ingredient);

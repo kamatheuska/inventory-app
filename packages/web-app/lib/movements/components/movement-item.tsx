@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import styles from './movement-item.module.css'
 import circlePlaceholder from '../../assets/images/circle-placeholder.png'
-import { IngredientDTO, MovementDTO } from '@inventory-app/types'
+import { IngredientViewType, MovementDTO } from '@inventory-app/types'
 
 type Props = MovementDTO;
 
 export default function MovementItem ({ amount, ingredient, operation, createdAt }: Props) {
-  const ingredientDTO = ingredient as IngredientDTO
+  const ingredientDTO = ingredient as IngredientViewType
   const isAddOperation = () => operation === 'add'
   const date = Intl.DateTimeFormat('es-ES', {
     month: 'short',
