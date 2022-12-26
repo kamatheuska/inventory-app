@@ -1,0 +1,31 @@
+.root {
+  height: var(--ingredient-card-height);
+  border: 1px solid var(--color-gray-light);
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.root * {
+  margin: 0;
+}
+
+.header {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.header h3 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.content {
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

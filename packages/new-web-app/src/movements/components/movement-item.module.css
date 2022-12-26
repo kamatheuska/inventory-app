@@ -1,0 +1,64 @@
+.root {
+  --movement-item-border-radius: 10px;
+  padding: 0.7rem;
+  border: solid 1px var(--color-gray-light);
+  display: grid;
+  grid-template-areas: 'icon content amount';
+  grid-template-columns: max-content auto 10rem;
+  gap: 1rem;
+}
+
+@media (min-width: 760px) {
+  .root {
+    min-width: 30rem;
+  }
+}
+
+.root:first-child {
+  border-top-left-radius: var(--movement-item-border-radius);
+  border-top-right-radius: var(--movement-item-border-radius);
+
+}
+
+.root:last-child {
+  border-bottom-left-radius: var(--movement-item-border-radius);
+  border-bottom-right-radius: var(--movement-item-border-radius);
+}
+
+.root:not(:last-child) {
+  border-bottom: none;
+}
+
+.icon {
+  grid-area: icon;
+}
+
+.content {
+  grid-area: content;
+  justify-self: start;
+}
+
+.content h5 {
+  font-weight: 900;
+  margin-bottom: 4px;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.content p {
+  margin: 0;
+}
+
+.amount {
+  grid-area: amount;
+  align-self: center;
+  justify-self: end;
+}
+
+.tag {
+  background-color: var(--color-link);
+  color: white;
+  padding: 6px 5px;
+  
+  border-radius: 5px;
+}

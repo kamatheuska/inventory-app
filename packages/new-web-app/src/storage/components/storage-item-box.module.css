@@ -1,0 +1,24 @@
+.root {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-link);
+  color: white;
+  border-radius: 10px;
+}
+.placeholder {
+  background-color: var(--color-info);
+  color: black;
+}
+.root h3 {
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.root p {
+  margin: 0;
+  font-size: 0.7em;
+}

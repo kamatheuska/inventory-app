@@ -1,0 +1,72 @@
+.root {
+    min-height: 80vh;
+    max-height: 900px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto minmax(min-content, 3rem) minmax(min-content, 3rem);
+    grid-template-areas:
+        'amount'
+        'controls'
+        'actions';
+    justify-content: center;
+
+}
+
+.amount {
+    grid-area: amount;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.amount input {
+    all: unset;
+    font-family: monospace;
+    width: 100%;
+    max-height: min-content;
+}
+
+.amount span:last-child {
+    font-size: 80px;
+}
+
+.controls {
+    grid-area: controls;
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.controls>button {
+    flex-basis: 50%;
+    padding-top: .7em;
+    padding-bottom: .7em;
+}
+
+.controls>button:first-child {
+    border-right: none;
+}
+
+.actions {
+    grid-area: actions;
+    display: flex;
+    width: 100%;
+}
+
+.actions button {
+    flex-basis: 100%;
+}
+
+@media (min-width: 768px) {
+    .root {
+        grid-template-columns: minmax(auto, 450px);
+    }
+
+    .amount input {
+        font-size: 250px;
+    }
+
+}

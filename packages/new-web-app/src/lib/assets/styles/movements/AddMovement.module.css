@@ -1,0 +1,13 @@
+.container {
+  padding-left: var(--page-padding);
+  padding-right: var(--page-padding);
+  min-height: 80vh;
+  padding-top: var(--page-top-padding);
+
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
