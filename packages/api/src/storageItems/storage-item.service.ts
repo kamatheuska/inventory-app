@@ -16,6 +16,12 @@ class StorageItemService {
         return docs;
     }
 
+    static async findById(id: string): Promise<any> {
+        const doc = await StorageItem.findById(id).populate('ingredient').exec();
+
+        return doc;
+    }
+
     static async findAllMovements({ limit, currentPage }: Querystring): Promise<any> {
         const stages = getMovementsAggrStages({
             limit,

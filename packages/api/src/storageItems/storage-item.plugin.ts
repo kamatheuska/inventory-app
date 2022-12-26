@@ -7,7 +7,12 @@ const Query = Type.Object({
     currentPage: Type.String(),
 });
 
+const Params = Type.Object({
+    id: Type.String(),
+});
+
 type Querystring = Static<typeof Query>;
+type ParamsType = Static<typeof Params>;
 
 async function storageItemPlugin(fastify: FastifyInstance) {
     fastify.route<{ Querystring: Querystring }>({
@@ -15,6 +20,18 @@ async function storageItemPlugin(fastify: FastifyInstance) {
         url: '/api/storage-items',
         handler: async () => {
             return StorageItemService.findAll();
+        },
+    });
+
+    fastify.route<{ Querystring: Querystring; Params: ParamsType }>({
+        method: 'GET',
+        url: '/api/storage-items/:id',
+        schema: {
+            params: Params,
+        },
+        handler: async (req) => {
+            const { id } = req.params;
+            return StorageItemService.findById(id);
         },
     });
 }

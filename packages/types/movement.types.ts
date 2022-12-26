@@ -1,5 +1,5 @@
 import { Model, Types } from "mongoose";
-import { IngredientDTO } from "./ingredient.types";
+import { IngredientDTO, IngredientViewType } from "./ingredient.types";
 
 export type OperationOptions = 'add' | 'remove';
 
@@ -13,7 +13,12 @@ export interface IMovement {
 
 export interface MovementDTO extends Omit<IMovement, '_id' | 'ingredient' > {
   _id?: string,
-  ingredient: IngredientDTO,
+  ingredient: string | IngredientDTO,
+};
+
+export interface MovementViewType extends Omit<IMovement, '_id' | 'ingredient' > {
+  _id?: string,
+  ingredient: IngredientViewType,
 };
 
 

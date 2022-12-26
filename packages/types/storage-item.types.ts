@@ -1,10 +1,10 @@
 import { Document, Model, Types } from "mongoose";
-import { IMovement, IngredientDTO }from "../types"
+import { IMovement, IngredientDTO, IngredientViewType, MovementDTO, MovementViewType }from "../types"
 
 export interface IStorageItem {
   _id: Types.ObjectId,
-  ingredient: Types.ObjectId;
   amount: number;
+  ingredient: Types.ObjectId;
   movements: IMovement[];
 }
 
@@ -12,11 +12,18 @@ export type StorageItemDocument = Document<unknown, any, IStorageItem> & IStorag
   _id: Types.ObjectId;
 }
 
-export interface StorageItemDTO  {
-  amount: number;
-  movements: IMovement[];
+export interface StorageItemDTO {
   _id: string,
+  amount: number;
   ingredient: string | IngredientDTO,
+  movements: MovementDTO[];
+};
+
+export interface StorageItemViewType {
+  _id: string,
+  amount: number;
+  ingredient: IngredientViewType,
+  movements: MovementViewType[];
 };
 
 

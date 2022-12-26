@@ -7,7 +7,7 @@
   },
   "scripts": {
     "app:debug": "node --inspect=9239 ./node_modules/.bin/fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js --debug-port=9239",
-    "app:dev": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
+    "dev": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js -p 3001",
     "app:seed": "ts-node ./src/scripts/db/seed.ts | pino-pretty",
     "prebuild": "yarn lint",
     "build": "yarn ts && yarn ts:test && yarn test",

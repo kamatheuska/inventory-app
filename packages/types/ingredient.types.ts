@@ -27,4 +27,6 @@ export interface IngredientDTO extends Omit<IIngredient, '_id'> {
   _id: string,
 };
 
+export type IngredientViewType = IngredientDTO;
+
 export interface IngredientModel extends Model<IIngredient> {}

@@ -9,7 +9,8 @@
   "workspaces": [
     "packages/api",
     "packages/web-app",
-    "packages/types"
+    "packages/types",
+    "packages/new-web-app"
   ],
   "private": true,
   "devDependencies": {
