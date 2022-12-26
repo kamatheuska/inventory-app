@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import IngredientsIndex from './ingredients/views/ingredients-index';
 import Layout from './lib/components/layout/layout';
 import Home from './lib/views/home';
 import StorageItemIndex from './storage/views/storage-item-index';
@@ -12,6 +13,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="storage" element={<StorageItemIndex />} />
                     <Route path="storage/items/:itemId" element={<StorageItemView />} />
+                    <Route path="ingredients" element={<IngredientsIndex />} />
                 </Route>
             </Routes>
         </div>
