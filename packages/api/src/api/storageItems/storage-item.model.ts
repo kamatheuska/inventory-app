@@ -9,7 +9,7 @@ const storageItemSchema = new Schema<IStorageItem, StorageItemModel>(
         _id: Schema.Types.ObjectId,
         ingredient: {
             type: Schema.Types.ObjectId,
-            ref: 'Ingredients',
+            ref: 'Ingredient',
             required: true,
             unique: true,
         },

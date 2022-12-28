@@ -9,7 +9,7 @@ export const movementSchema = new Schema<IMovement, MovementModel>(
         _id: Schema.Types.ObjectId,
         ingredient: {
             type: Schema.Types.ObjectId,
-            ref: 'Ingredients',
+            ref: 'Ingredient',
             required: true,
         },
         amount: {

@@ -1,32 +1,17 @@
 import { test } from 'tap';
-import { Model } from 'mongoose';
-import { IStorageItem } from '@inventory-app/types';
+import { IStorageItem, StorageItemModel } from '@inventory-app/types';
 
-import { getMockedMovementPayloads } from '../../src/movements/movement.mock';
-import { build } from '../helper';
-import StorageItem from '../../src/storageItems/storage-item.model';
-import { getMockedStorageItems } from '../../src/storageItems/storage-item.mocks';
-import { MovementBodySchemaType } from '../../src/movements/movement.plugin';
-import { getMockedIngredients } from '../../src/ingredients/ingredients.mock';
-import Ingredients from '../../src/ingredients/ingredients.model';
+import { getMockedMovementPayloads } from '../../src/api/movements/movement.mock';
+import { build, fetchEntity } from '../helper';
+import StorageItem from '../../src/api/storageItems/storage-item.model';
+import { getMockedStorageItems } from '../../src/api/storageItems/storage-item.mocks';
+import { MovementBodySchemaType } from '../../src/api/movements/movement.plugin';
+import { getMockedIngredients } from '../../src/api/ingredients/ingredients.mock';
+import Ingredient from '../../src/api/ingredients/ingredients.model';
 
 async function cleanDb() {
-    await Ingredients.deleteMany({});
+    await Ingredient.deleteMany({});
     await StorageItem.deleteMany({});
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-async function fetchEntity<T>(Entity: Model<T>, filter: any) {
-    const count = await Entity.countDocuments();
-    const instance = await Entity.findOne(filter);
-    if (instance) {
-        return {
-            count,
-            instance,
-        };
-    } else {
-        throw new Error('storage item not found');
-    }
 }
 
 test('Movements: POST /api/movements/new', { skip: false }, async (t) => {
@@ -48,13 +33,14 @@ test('Movements: POST /api/movements/new', { skip: false }, async (t) => {
             },
         });
 
-        const itemEntity = await fetchEntity(StorageItem, {
+        const itemEntity = await fetchEntity<IStorageItem, StorageItemModel>(StorageItem, {
             ingredient: payloads[0].ingredient,
         });
-        const item = itemEntity.instance as unknown as IStorageItem;
+        const item = itemEntity.instance;
         const itemCount = itemEntity.count;
 
-        t.equal(item.amount, payloads[0].amount, 'should have the same amount as in the passed movement');
+        t.type(item, 'object', 'should return an storage item document');
+        t.equal(item?.amount, payloads[0].amount, 'should have the same amount as in the passed movement');
         t.equal(itemCount, 1, 'should have only one document on the StorageItem collection');
         t.equal(res.statusCode, 200, 'returns a statusCode of 200');
     } catch (error) {
@@ -83,13 +69,14 @@ test('Movements: POST /api/movements/new to an existing StorageItem', { skip: fa
             },
         });
 
-        const itemEntity = await fetchEntity(StorageItem, {
+        const itemEntity = await fetchEntity<IStorageItem, StorageItemModel>(StorageItem, {
             ingredient: payloads[0].ingredient,
         });
-        const item = itemEntity.instance as unknown as IStorageItem;
+        const item = itemEntity.instance;
         const itemCount = itemEntity.count;
+        t.type(item, 'object', 'should return an storage item document');
 
-        t.equal(item.amount, payloads[0].amount, 'should have the same amount as in the passed movement');
+        t.equal(item?.amount, payloads[0].amount, 'should have the same amount as in the passed movement');
         t.equal(itemCount, 1, 'should have only one document on the StorageItem collection');
         t.equal(res.statusCode, 200, 'returns a statusCode of 200 POST /api/movements/new');
     } catch (error) {
@@ -111,15 +98,16 @@ test('Movements: POST /api/movements/new to an existing StorageItem', { skip: fa
             },
         });
 
-        const itemEntity = await fetchEntity(StorageItem, {
+        const itemEntity = await fetchEntity<IStorageItem, StorageItemModel>(StorageItem, {
             ingredient: payloads[0].ingredient,
         });
-        const item = itemEntity.instance as unknown as IStorageItem;
+        const item = itemEntity.instance;
         const itemCount = itemEntity.count;
 
-        t.equal(item.amount, 2100, 'should have the new amount');
+        t.type(item, 'object', 'should return an storage item document');
+        t.equal(item?.amount, 2100, 'should have the new amount');
         t.equal(itemCount, 1, 'should have only one document on the StorageItem collection');
-        t.equal(item.movements.length, 2, 'should have two documents on the Movement array');
+        t.equal(item?.movements.length, 2, 'should have two documents on the Movement array');
         t.equal(res.statusCode, 200, 'should return a statusCode of 200 for second POST /api/movements/new');
     } catch (error) {
         t.error(error);
@@ -137,7 +125,7 @@ test('Movements: GET /api/movements', { skip: false }, async (t) => {
         await app.close();
     });
     try {
-        const resultIngredients = await Ingredients.insertMany(ingredients);
+        const resultIngredients = await Ingredient.insertMany(ingredients);
         const resultStorageItems = await StorageItem.insertMany(storageItems);
 
         t.equal(resultIngredients.length, 10, 'should insert 3 mocked storage items');

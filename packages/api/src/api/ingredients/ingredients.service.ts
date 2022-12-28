@@ -1,13 +1,13 @@
 import { default as parentDebug } from 'debug';
 import * as createError from 'http-errors';
-import Ingredients from './ingredients.model';
+import Ingredient from './ingredients.model';
 
 const debug = parentDebug('app:services:ingredients');
 
 class IngredientsService {
     static async findAll() {
         try {
-            const ingredients = await Ingredients.find({});
+            const ingredients = await Ingredient.find({});
 
             debug(ingredients);
 

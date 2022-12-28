@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 import { IIngredient } from '@inventory-app/types';
 import { faker } from '@faker-js/faker';
-import { getRandomProperty } from '../lib/utils/random';
+import { getRandomProperty } from '../../lib/utils/random';
 import { ingredientCategories, measureUnits } from './ingredients.constants';
 
 export const getMockedIngredients = (amount: number): IIngredient[] =>

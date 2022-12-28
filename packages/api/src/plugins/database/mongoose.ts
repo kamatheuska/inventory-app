@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import fp from 'fastify-plugin';
-import { MongooseDecorator } from '../app.types';
+import { MongooseDecorator } from '../../app.types';
 import { FastifyInstance } from 'fastify';
-import { connectToDatabase } from '../lib/db/connect';
+import { connectToDatabase } from '../../lib/db/connect';
 
 export default fp(
     async function mongooseConnector(fastify) {

@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 
 import { IIngredient, IStorageItem } from '@inventory-app/types';
 import { getMockedMovements } from '../movements/movement.mock';
-import { getRandomItem } from '../lib/utils/random';
+import { getRandomItem } from '../../lib/utils/random';
 
 export const getMockedStorageItems = (amount: number, ingredients: IIngredient[]): IStorageItem[] => {
     return [...Array(amount)].map(() => {

@@ -10,6 +10,8 @@ export type AppOptions = {
 } & Partial<AutoloadPluginOptions>;
 
 export interface AppConfig {
+    DISABLE_SIGNUP: boolean;
+    JWT_SECRET: string;
     MONGODB_URI: string;
     NODE_ENV: string;
     PORT: string;

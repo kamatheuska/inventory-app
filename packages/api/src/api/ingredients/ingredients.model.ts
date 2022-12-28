@@ -50,6 +50,6 @@ ingredientsSchema.methods.toJSON = function (): IngredientDTO {
     };
 };
 
-const Ingredients = model('Ingredients', ingredientsSchema);
+const Ingredient = model('Ingredient', ingredientsSchema);
 
-export default Ingredients;
+export default Ingredient;

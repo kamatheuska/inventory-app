@@ -4,16 +4,17 @@ import { FastifyPluginAsync } from 'fastify';
 import AutoLoad from '@fastify/autoload';
 
 import { AppOptions, LoggerOptions } from './app.types';
-import movementPlugin from './movements/movement.plugin';
-import ingredientsPlugin from './ingredients/ingredients.plugin';
-import storageItemPlugin from './storageItems/storage-item.plugin';
+import movementPlugin from './api/movements/movement.plugin';
+import ingredientsPlugin from './api/ingredients/ingredients.plugin';
+import storageItemPlugin from './api/storageItems/storage-item.plugin';
+import authPlugin from './api/auth/auth.plugin';
 
-const app: FastifyPluginAsync<AppOptions> = async function app(fastify, opts) {
-    await fastify.register(AutoLoad, {
-        dir: join(__dirname, 'plugins'),
-        options: opts,
-    });
+const app: FastifyPluginAsync<AppOptions> = async function app(fastify, options) {
+    await fastify.register(AutoLoad, { dir: join(__dirname, 'plugins/core'), options });
+    await fastify.register(AutoLoad, { dir: join(__dirname, 'plugins/database'), options });
+    await fastify.register(AutoLoad, { dir: join(__dirname, 'plugins/libraries'), options });
 
+    await fastify.register(authPlugin);
     await fastify.register(movementPlugin);
     await fastify.register(ingredientsPlugin);
     await fastify.register(storageItemPlugin);
