@@ -21,8 +21,8 @@
     "lint": "yarn lint:api && yarn lint:web-app",
     "lint:api": "yarn workspace @inventory-app/api lint",
     "lint:web-app": "yarn workspace @inventory-app/web-app lint",
-    "test:ci": "yarn test:api && yarn test:web-app",
-    "test:api": "yarn workspace @inventory-app/api test:ci",
-    "test:web-app": "yarn workspace @inventory-app/web-app test:ci"
+    "test": "yarn test:api && yarn test:web-app",
+    "test:api": "yarn workspace @inventory-app/api test",
+    "test:web-app": "yarn workspace @inventory-app/web-app test"
   }
 }

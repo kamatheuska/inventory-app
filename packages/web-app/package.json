@@ -10,7 +10,7 @@
     "start": "PORT=3000 next start",
     "cypress": "cypress open",
     "lint": "next lint",
-    "test:ci": "echo \"No test for now\""
+    "test": "echo \"No test for now\""
   },
   "dependencies": {
     "@inventory-app/types": "1.0.0",
