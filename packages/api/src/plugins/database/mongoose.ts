@@ -1,19 +1,41 @@
 import mongoose from 'mongoose';
 import fp from 'fastify-plugin';
-import { MongooseDecorator } from '../../app.types';
+import debug from 'debug';
+
+import { AppConfig, MongooseDecorator } from '../../app.types';
 import { FastifyInstance } from 'fastify';
 import { connectToDatabase } from '../../lib/db/connect';
 
-export default fp(
-    async function mongooseConnector(fastify) {
-        const { log: parentLog, config } = fastify;
-        const log = parentLog.child({ module: 'mongooseConnector' });
+const $debug = debug('app:info:plugins:env');
 
-        function closeConnection(instance: FastifyInstance, done: () => void) {
-            instance.mongoose.instance.connection.on('close', () => {
-                done();
-            });
-            instance.mongoose.instance.connection.close();
+type PluginOptions = {
+    MONGODB_SERVER_SELECTION_TIMEOUT_MS: number;
+};
+
+const buildUri = (config: AppConfig): string => {
+    const { MONGODB_PROTOCOL, MONGODB_USER, MONGODB_PASSWORD, MONGODB_HOST, MONGODB_PORT, MONGODB_COLLECTION } = config;
+
+    $debug('Mongoose Connection Options: %O', {
+        MONGODB_PROTOCOL,
+        MONGODB_USER,
+        MONGODB_HOST,
+        MONGODB_PORT,
+        MONGODB_COLLECTION,
+    });
+
+    return `${MONGODB_PROTOCOL}://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_COLLECTION}`;
+};
+
+export default fp<PluginOptions>(
+    async function mongoosePlugin(fastify, options) {
+        const { config } = fastify;
+
+        mongoose.connection.on('error', (e) => {
+            throw e;
+        });
+
+        async function closeConnection(instance: FastifyInstance) {
+            instance.mongoosePlugin.instance.connection.close();
         }
 
         const mongooseDecorator = {
@@ -21,19 +43,28 @@ export default fp(
         };
 
         fastify.addHook('onClose', closeConnection);
-        fastify.decorate('mongoose', mongooseDecorator);
+        fastify.decorate('mongoosePlugin', mongooseDecorator);
+        try {
+            const uri = buildUri(config);
+            $debug('Start connection to MongoDB ');
 
-        log.info('Start connection to MongoDB');
-        await connectToDatabase(config.MONGODB_URI);
-        log.info('Connected succesfully to mongodb database');
+            await connectToDatabase(uri, {
+                serverSelectionTimeoutMS:
+                    options.MONGODB_SERVER_SELECTION_TIMEOUT_MS || config.MONGODB_SERVER_SELECTION_TIMEOUT_MS,
+            });
+            $debug('Connected succesfully to mongodb database');
+        } catch (error) {
+            $debug(error);
+            throw error;
+        }
     },
     {
-        name: 'mongooseConnector',
+        name: 'mongoosePlugin',
     }
 );
 
 declare module 'fastify' {
     export interface FastifyInstance {
-        mongoose: MongooseDecorator;
+        mongoosePlugin: MongooseDecorator;
     }
 }
