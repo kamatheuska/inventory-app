@@ -7,13 +7,12 @@
     },
     "scripts": {
         "dev": "concurrently --names \"TS,SERVER\" -c \"bgBlue,bgMagenta\" \"yarn:app:ts:watch\" \"yarn:app:run\"",
-        "app:run": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js -p 3001",
+        "app:run": "fastify start -c fastify.config.js -w dist/app.js",
         "app:ts": "tsc",
-        "app:ts:watch": "yarn ts -w",
+        "app:ts:watch": "yarn app:ts -w",
         "app:debug": "node --inspect=9239 ./node_modules/.bin/fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js --debug-port=9239",
         "app:seed": "ts-node ./src/lib/scripts/db/seed.ts | pino-pretty",
-        "prebuild": "yarn lint",
-        "build": "yarn ts && yarn ts:test && yarn test",
+        "build": "yarn app:ts && yarn test:ts && yarn test:run",
         "lint": "eslint .",
         "start": "fastify start -l info dist/app.js",
         "test": "yarn app:ts && yarn test:ts && yarn test:run",
@@ -34,6 +33,7 @@
         "@inventory-app/types": "1.0.0",
         "@lukeed/ms": "^2.0.1",
         "@sinclair/typebox": "^0.25.13",
+        "cookie": "^0.5.0",
         "debug": "^4.3.4",
         "dotenv": "^16.0.0",
         "fast-jwt": "^2.0.2",
@@ -43,10 +43,12 @@
         "http-errors": "^2.0.0",
         "mongoose": "^6.8.0",
         "pino": "^8.5.0",
-        "pino-pretty": "^9.0.0"
+        "pino-pretty": "^9.0.0",
+        "supports-color": "^9.3.1"
     },
     "devDependencies": {
         "@faker-js/faker": "^7.6.0",
+        "@types/cookie": "^0.5.1",
         "@types/debug": "^4.1.7",
         "@types/http-errors": "^2.0.1",
         "@types/node": "^18.0.0",

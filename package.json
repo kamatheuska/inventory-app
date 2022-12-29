@@ -23,6 +23,7 @@
     "lint:web-app": "yarn workspace @inventory-app/web-app lint",
     "test": "yarn test:api && yarn test:web-app",
     "test:api": "yarn workspace @inventory-app/api test",
-    "test:web-app": "yarn workspace @inventory-app/web-app test"
+    "test:web-app": "yarn workspace @inventory-app/web-app test",
+    "build:api": "yarn workspace @inventory-app/api build"
   }
 }
