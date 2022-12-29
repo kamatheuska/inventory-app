@@ -24,6 +24,7 @@
     "test": "yarn test:api && yarn test:web-app",
     "test:api": "yarn workspace @inventory-app/api test",
     "test:web-app": "yarn workspace @inventory-app/web-app test",
-    "build:api": "yarn workspace @inventory-app/api build"
+    "build:api": "yarn workspace @inventory-app/api build",
+    "start:api": "yarn workspace @inventory-app/api start"
   }
 }

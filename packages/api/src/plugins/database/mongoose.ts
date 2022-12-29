@@ -13,7 +13,15 @@ type PluginOptions = {
 };
 
 const buildUri = (config: AppConfig): string => {
-    const { MONGODB_PROTOCOL, MONGODB_USER, MONGODB_PASSWORD, MONGODB_HOST, MONGODB_PORT, MONGODB_COLLECTION } = config;
+    const {
+        MONGODB_PROTOCOL,
+        MONGODB_USER,
+        MONGODB_PASSWORD,
+        MONGODB_HOST,
+        MONGODB_PORT,
+        MONGODB_COLLECTION,
+        MONGODB_AUTH_SOURCE,
+    } = config;
 
     $debug('Mongoose Connection Options: %O', {
         MONGODB_PROTOCOL,
@@ -21,9 +29,16 @@ const buildUri = (config: AppConfig): string => {
         MONGODB_HOST,
         MONGODB_PORT,
         MONGODB_COLLECTION,
+        MONGODB_AUTH_SOURCE,
     });
 
-    return `${MONGODB_PROTOCOL}://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_COLLECTION}`;
+    const uri = `${MONGODB_PROTOCOL}://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_COLLECTION}`;
+
+    if (MONGODB_AUTH_SOURCE) {
+        return `${uri}?authSource=${MONGODB_AUTH_SOURCE}`;
+    }
+
+    return uri;
 };
 
 export default fp<PluginOptions>(
