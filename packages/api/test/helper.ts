@@ -3,6 +3,7 @@ import { FastifyInstance } from 'fastify';
 import mongoose, { Model } from 'mongoose';
 import * as path from 'path';
 import { AppConfig } from '../src/app.types';
+import { FetchedTestEntity } from 'types';
 
 const AppPath = path.join(__dirname, '..', 'src', 'app.ts');
 
@@ -23,7 +24,10 @@ export async function getConnection() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function fetchEntity<Entity, T extends Model<Entity>>(EntityModel: T, filter: any) {
+export async function fetchEntity<Entity, T extends Model<Entity>>(
+    EntityModel: T,
+    filter: any
+): Promise<FetchedTestEntity<Entity>> {
     const count = await EntityModel.countDocuments();
     const instance = await EntityModel.findOne(filter);
     return {

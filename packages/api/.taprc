@@ -3,7 +3,8 @@ test-env: [
   TS_NODE_PROJECT=./test/tsconfig.json,
   NODE_ENV=test,
   MONGODB_URI=mongodb://inventory-dev:Pauper-Routine-Sneer3-Broiler@localhost:27017/inventory-app-test?authSource=inventory-app,
-  DISABLE_SIGNUP=true
+  DISABLE_SIGNUP=true,
+  JWT_SECRET=someverytsecretstring,
 ]
 
 branches: 80

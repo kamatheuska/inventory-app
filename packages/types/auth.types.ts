@@ -16,11 +16,16 @@ export interface IUser {
     tokens: IToken[];
 }
 
+export type VerifiedUser = Promise <{
+    user: UserDocument,
+    decoded: TokenPayload,
+}>
+
 export type UserModel = Model<IUser>;
 
-export type UserDocument = (Document<unknown, any, IUser> & IUser & {
+export type UserDocument = Document<unknown, any, IUser> & IUser & {
     _id: Types.ObjectId;
-}) | null;
+};
 
 
 export interface IToken {

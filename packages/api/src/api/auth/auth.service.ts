@@ -1,4 +1,4 @@
-import { IToken, TokenPayload, UserCredentials } from '@inventory-app/types';
+import { IToken, TokenPayload, UserCredentials, VerifiedUser } from '@inventory-app/types';
 import * as createHttpError from 'http-errors';
 import User from './user.model';
 import { signJWTAsync, verifyJWTAsync } from '../../lib/utils/jwt';
@@ -21,8 +21,14 @@ class AuthService {
     }
 
     static async login(credentials: UserCredentials, secret: string): Promise<IToken> {
-        const user = await AuthService.verifyUser(credentials, secret);
-        const token = await AuthService.createToken(user, secret);
+        const { user, decoded } = await AuthService.verifyUser(credentials, secret);
+        const token = await AuthService.createToken(
+            {
+                username: user.username,
+                password: decoded.password,
+            },
+            secret
+        );
 
         user.tokens.push(token);
 
@@ -31,7 +37,7 @@ class AuthService {
         return token;
     }
 
-    static async verifyUser({ username, password }: UserCredentials, secret: string) {
+    static async verifyUser({ username, password }: UserCredentials, secret: string): VerifiedUser {
         const user = await User.findOne({ username });
 
         if (!user) throw new createHttpError.Unauthorized('No user with that username');
@@ -40,7 +46,10 @@ class AuthService {
 
         if (decoded.password !== password) throw new createHttpError.Unauthorized('Password does not match');
 
-        return user;
+        return {
+            user,
+            decoded,
+        };
     }
 
     static async createToken({ username, password }: UserCredentials, secret: string): Promise<IToken> {
