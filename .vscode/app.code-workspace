@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"name": "✨ inventory-app",
+			"path": ".."
+		},
+		{
+			"name": "🚀 @inventory-app/api",
+			"path": "../packages/api"
+		},
+		{
+			"name": "🚀 @inventory/new-web-app",
+			"path": "../packages/new-web-app"
+		},
+		{
+			"name": "📦 @inventory-app/types",
+			"path": "../packages/types"
+		},
+		{
+			"name": "🚀 @inventory-app/web-app",
+			"path": "../packages/web-app"
+		}
+	],
+    "settings": {
+        "monorepoWorkspace.folders.custom": [
+            {
+                "regex": "app1",
+                "prefix": "🔥"
+            },
+            {
+                "regex": "app2",
+                "prefix": "📚"
+            }
+        ]
+    }
+}

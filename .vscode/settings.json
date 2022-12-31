@@ -1,3 +1,13 @@
 {
-  "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "monorepoWorkspace.folders.custom": [
+        {
+            "regex": "api",
+            "prefix": "🔥"
+        },
+        {
+            "regex": "app2",
+            "prefix": "📚"
+        }
+    ]
 }
