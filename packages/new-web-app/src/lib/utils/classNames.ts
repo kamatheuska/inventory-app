@@ -4,7 +4,7 @@ const isObject = (value: any) => value != null && (typeof value === 'object' || 
 type Fof<T extends any[], R> = (...args: T) => R;
 
 const classNames: Fof<string[] | Record<string, boolean>[], string> = (...args) => {
-    const classes = [];
+    const classes: string[] = [];
     for (const arg of args) {
         if (typeof arg === 'string') {
             classes.push(arg);

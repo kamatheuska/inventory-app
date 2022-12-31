@@ -4,11 +4,12 @@ import styles from './add-movement.module.css';
 import IngridientSelector from '../../ingredients/components/ingredient-selector';
 import { IngredientViewType, MovementViewType } from '@inventory-app/types';
 
+type MovementForm = Omit<MovementViewType, 'ingredient'> & { ingredient: string };
 export default function AddMovementForm() {
-    const { register, handleSubmit, setValue } = useForm<MovementViewType>();
+    const { register, handleSubmit, setValue } = useForm<MovementForm>();
 
     const onSubmit = handleSubmit(async (data) => {
-        const movement: MovementViewType = {
+        const movement: MovementForm = {
             amount: data.amount,
             ingredient: data.ingredient,
             operation: data.operation,

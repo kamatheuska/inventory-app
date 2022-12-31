@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppState } from '../lib/store';
+import { RootState } from '../lib/store';
 import { IngredientViewType } from '@inventory-app/types';
 
 export interface IngredientsState {
@@ -29,8 +29,8 @@ export const ingredientSlice = createSlice({
 });
 
 // Selectors
-export const getAll = (state: AppState) => state.ingredients.list;
-export const getIsLoading = (state: AppState) => state.ingredients.isLoading;
+export const getAll = (state: RootState) => state.ingredients.list;
+export const getIsLoading = (state: RootState) => state.ingredients.isLoading;
 
 export const { setList, startRequest, finishRequest } = ingredientSlice.actions;
 
