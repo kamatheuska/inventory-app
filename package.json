@@ -25,6 +25,12 @@
     "test:api": "yarn workspace @inventory-app/api test",
     "test:web-app": "yarn workspace @inventory-app/web-app test",
     "build:api": "yarn workspace @inventory-app/api build",
-    "start:api": "yarn workspace @inventory-app/api start"
+    "start:api": "yarn workspace @inventory-app/api start",
+    "docker:push:api": "docker compose push",
+    "docker:api": "yarn docker:build:api && yarn docker:push:api",
+    "docker:build:api": "export LOGIN_SERVER=$npm_package_config_login_server && docker compose build"
+  },
+  "config": {
+    "login_server": "nikameushinventoryappregistry.azurecr.io"
   }
 }

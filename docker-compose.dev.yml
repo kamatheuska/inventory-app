@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  api:
+    build: "."
+    image: ${LOGIN_SERVER}/inventory-app/api:v1
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Pauper-Routine-Sneer3-Broiler
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db:/data/db
