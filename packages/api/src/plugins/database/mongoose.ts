@@ -2,43 +2,14 @@ import mongoose from 'mongoose';
 import fp from 'fastify-plugin';
 import debug from 'debug';
 
-import { AppConfig, MongooseDecorator } from '../../app.types';
+import { MongooseDecorator } from '../../app.types';
 import { FastifyInstance } from 'fastify';
 import { connectToDatabase } from '../../lib/db/connect';
 
-const $debug = debug('app:info:plugins:env');
+const $debug = debug('app:info:plugins:mongoose');
 
 type PluginOptions = {
     MONGODB_SERVER_SELECTION_TIMEOUT_MS: number;
-};
-
-const buildUri = (config: AppConfig): string => {
-    const {
-        MONGODB_PROTOCOL,
-        MONGODB_USER,
-        MONGODB_PASSWORD,
-        MONGODB_HOST,
-        MONGODB_PORT,
-        MONGODB_COLLECTION,
-        MONGODB_AUTH_SOURCE,
-    } = config;
-
-    $debug('Mongoose Connection Options: %O', {
-        MONGODB_PROTOCOL,
-        MONGODB_USER,
-        MONGODB_HOST,
-        MONGODB_PORT,
-        MONGODB_COLLECTION,
-        MONGODB_AUTH_SOURCE,
-    });
-
-    const uri = `${MONGODB_PROTOCOL}://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_COLLECTION}`;
-
-    if (MONGODB_AUTH_SOURCE) {
-        return `${uri}?authSource=${MONGODB_AUTH_SOURCE}`;
-    }
-
-    return uri;
 };
 
 export default fp<PluginOptions>(
@@ -60,8 +31,9 @@ export default fp<PluginOptions>(
         fastify.addHook('onClose', closeConnection);
         fastify.decorate('mongoosePlugin', mongooseDecorator);
         try {
-            const uri = buildUri(config);
-            $debug('Start connection to MongoDB ');
+            const uri = config.MONGODB_URI;
+
+            $debug('Start connection to MongoDB at %s', uri);
 
             await connectToDatabase(uri, {
                 serverSelectionTimeoutMS:
