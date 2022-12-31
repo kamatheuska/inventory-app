@@ -6,7 +6,7 @@ services:
       dockerfile: ./Dockerfile.api
     image: ${LOGIN_SERVER}/inventory-app/api:v1
     ports:
-      - "3001:3001"
+      - "6000:6000"
     env_file:
       - ./.env
     restart: unless-stopped
