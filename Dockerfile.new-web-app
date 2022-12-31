@@ -1,0 +1,30 @@
+# stage 1
+FROM node:18-alpine as builder
+WORKDIR /web-app
+
+COPY package*.json ./
+COPY package.json ./
+COPY yarn.lock ./
+COPY packages/new-web-app/package.json packages/new-web-app/yarn.lock ./packages/new-web-app/
+COPY packages/new-web-app/src  ./packages/new-web-app/src
+COPY packages/new-web-app/index.html packages/new-web-app/tsconfig.json  packages/new-web-app/tsconfig.node.json  packages/new-web-app/vite.config.ts  ./packages/new-web-app/
+COPY packages/types ./packages/types
+RUN ls -la 
+RUN ls -la ./packages
+RUN ls -la ./packages/new-web-app
+RUN ls -la ./packages/new-web-app
+RUN yarn
+RUN yarn build:web-app
+
+RUN ls -la ./packages/new-web-app
+
+# stage 2 
+FROM nginx:alpine as production-build
+COPY ./packages/nginx/nginx.conf /etc/nginx/nginx.conf
+
+## Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /web-app/packages/new-web-app/dist /usr/share/nginx/html
+
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
