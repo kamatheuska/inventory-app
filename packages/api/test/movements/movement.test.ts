@@ -30,6 +30,7 @@ test('Movements: POST /api/movements/new', { skip: false }, async (t) => {
             payload: payloads[0],
             headers: {
                 ['content-type']: 'application/json',
+                Origin: 'http://localhost:5000',
             },
         });
 
@@ -66,6 +67,7 @@ test('Movements: POST /api/movements/new to an existing StorageItem', { skip: fa
             payload: payloads[0],
             headers: {
                 ['content-type']: 'application/json',
+                Origin: 'http://localhost:5000',
             },
         });
 
@@ -95,6 +97,7 @@ test('Movements: POST /api/movements/new to an existing StorageItem', { skip: fa
             payload,
             headers: {
                 ['content-type']: 'application/json',
+                Origin: 'http://localhost:5000',
             },
         });
 
@@ -133,6 +136,9 @@ test('Movements: GET /api/movements', { skip: false }, async (t) => {
 
         const res = await app.inject({
             url: '/api/movements',
+            headers: {
+                Origin: 'http://localhost:5000',
+            },
         });
 
         t.equal(res.statusCode, 200, 'should return a statusCode of 200 for GET /api/movements');

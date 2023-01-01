@@ -12,6 +12,8 @@ export const getSignupOptions: InjectOptionsFunction<IUser> = (user, headers = {
     payload: user,
     headers: {
         ['content-type']: 'application/json',
+
+        Origin: 'http://localhost:5000',
         ...headers,
     },
 });
@@ -22,6 +24,8 @@ export const getLoginOptions: InjectOptionsFunction<UserCredentials> = (credenti
     payload: credentials,
     headers: {
         ['content-type']: 'application/json',
+
+        Origin: 'http://localhost:5000',
         ...headers,
     },
 });

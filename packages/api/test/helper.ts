@@ -5,16 +5,15 @@ import * as path from 'path';
 import { AppConfig } from '../src/app.types';
 import { FetchedTestEntity } from 'types';
 
-const AppPath = path.join(__dirname, '..', 'src', 'app.ts');
+async function buildWithDecoratorsExposedForTesting(config?: Partial<AppConfig>): Promise<FastifyInstance> {
+    const pathToApp = path.join(__dirname, '..', 'src', 'app.ts');
+    const argv = [pathToApp];
 
-export async function build(config?: Partial<AppConfig>): Promise<FastifyInstance> {
-    // you can set all the options supported by the fastify CLI command
-    const argv = [AppPath];
+    return (await helper.build(argv, config)) as FastifyInstance;
+}
 
-    // fastify-plugin ensures that all decorators
-    // are exposed for testing purposes, this is
-    // different from the production setup
-    const app = (await helper.build(argv, config)) as FastifyInstance;
+async function buildWithAllOptionsOfFastifyCli(config?: Partial<AppConfig>): Promise<FastifyInstance> {
+    const app = buildWithDecoratorsExposedForTesting(config);
 
     return app;
 }
@@ -35,3 +34,4 @@ export async function fetchEntity<Entity, T extends Model<Entity>>(
         instance,
     };
 }
+export const build = buildWithAllOptionsOfFastifyCli;
