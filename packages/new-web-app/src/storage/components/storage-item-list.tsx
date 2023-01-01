@@ -15,7 +15,13 @@ export default function StorageItemList() {
     }
 
     if (storageItemList.length === 0) {
-        return <div>No items to show</div>;
+        return (
+            <div className={styles.root} data-cy="storage-item-list">
+                <div className={styles.grid}>
+                    <StorageItemBoxPlaceholder />
+                </div>
+            </div>
+        );
     }
 
     return (

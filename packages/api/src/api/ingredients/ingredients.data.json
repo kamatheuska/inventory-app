@@ -1,170 +1,590 @@
 [
   {
     "name": "Apple",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Apricot",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Avocado",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Banana",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Blackberry",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Blueberry",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Cherry",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Chocolate",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Cranberry",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Dragonfruit",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Durian",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Feijoa",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Fig",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Gooseberry",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Grape",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Grapes",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "GreenApple",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Guava",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Kiwi",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Kiwifruit",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Lemon",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Lime",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Lingonberry",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Lychee",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Mango",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Melon",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Morus",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Orange",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Papaya",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Passionfruit",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Peach",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Pear",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Persimmon",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Pineapple",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Pitahaya",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Plum",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Pomegranate",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Raspberry",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Strawberry",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Tangerine",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Tomato",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   },
   {
     "name": "Watermelon",
-    "category": "fruits"
+    "category": "fruits",
+    "description": "A beautiful fruit",
+    "inventory": {
+        "note": "This fruit has a note",
+        "minAmount": 10,
+        "shopAt": "Donde Pepa"
+    },
+    "measureUnit": "gr",
+    "tags": [
+        { "label": "best"}
+    ]
   }
 ]
