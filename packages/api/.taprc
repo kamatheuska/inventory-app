@@ -4,13 +4,7 @@ test-env: [
   NODE_ENV=test,
   DISABLE_SIGNUP=true,
   JWT_SECRET=someverytsecretstring,
-  MONGODB_PROTOCOL=mongodb,
-  MONGODB_USER=inventory-dev,
-  MONGODB_PASSWORD=Pauper-Routine-Sneer3-Broiler,
-  MONGODB_HOST=localhost,
-  MONGODB_PORT=27017,
-  MONGODB_COLLECTION=inventory-app-test,
-  MONGODB_AUTH_SOURCE=inventory-app
+  MONGODB_URI=mongodb://inventory-dev:Pauper-Routine-Sneer3-Broiler@localhost:27017/inventory-app-test?authSource=inventory-app,
 ]
 
 branches: 80

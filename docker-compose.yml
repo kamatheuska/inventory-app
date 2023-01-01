@@ -4,7 +4,9 @@ services:
     build: 
       context: "."
       dockerfile: ./Dockerfile.api
-    image: ${LOGIN_SERVER}/inventory-app/api:v1
+      args:
+        PORT: 6756
+    image: ${LOGIN_SERVER-}inventory-app/api:v1
     ports:
       - "6000:6000"
     env_file:
@@ -12,7 +14,7 @@ services:
     restart: unless-stopped
 
   web-app:
-    image: ${LOGIN_SERVER}/inventory-app/web-app:v1
+    image: ${LOGIN_SERVER-}inventory-app/web-app:v1
     build: 
       context: "."
       dockerfile: ./Dockerfile.new-web-app

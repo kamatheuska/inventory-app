@@ -104,6 +104,8 @@ test('Auth: Login: Logs in a user that is already signed up', { skip: false }, a
         runLoginAssertions(t, users[0], fetched, res);
     } catch (error) {
         t.error(error);
+    } finally {
+        t.end();
     }
 });
 
@@ -122,6 +124,8 @@ test('Auth: Login: Fails to login a user that does not exist', { skip: false }, 
         t.equal(res.statusCode, 401, 'returns a statusCode of 401 for /api/auth/login');
     } catch (error) {
         t.error(error);
+    } finally {
+        t.end();
     }
 });
 
@@ -166,5 +170,7 @@ test('Auth: Login: Fails to login with the password of a different user', { skip
         t.equal(res.statusCode, 401, 'login: returns a statusCode of 401 for /api/auth/login');
     } catch (error) {
         t.error(error);
+    } finally {
+        t.end();
     }
 });

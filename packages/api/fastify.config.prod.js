@@ -1,5 +1,4 @@
 module.exports = {
-    port: 6000,
     prettyLogs: false,
     ignoreWatch: '.ts$',
     logLevel: 'info',

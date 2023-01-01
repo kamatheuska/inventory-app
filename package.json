@@ -32,6 +32,6 @@
     "docker:build:api": "export LOGIN_SERVER=$npm_package_config_login_server && docker compose build"
   },
   "config": {
-    "login_server": "nikameushinventoryappregistry.azurecr.io"
+    "login_server": "nikameushinventoryappregistry.azurecr.io/"
   }
 }
