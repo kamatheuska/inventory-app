@@ -15,8 +15,10 @@ interface RequestOptions {
     params?: any[];
 }
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
 async function request({
-    baseUrl = '',
+    baseUrl = BASE_URL,
     body, // empty body is ignored by fetch
     endpoint = '',
     method = 'GET',
