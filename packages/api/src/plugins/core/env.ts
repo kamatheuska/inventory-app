@@ -15,6 +15,7 @@ export default fp<FastifyEnvOptions>(async (fastify) => {
         NODE_ENV: Type.String(),
 
         // Optional with Defaults
+        WHITE_LISTED_DOMAINS: Type.Optional(Type.String({ default: '' })),
         PORT: Type.Optional(Type.Number({ default: 3000 })),
         MONGODB_SERVER_SELECTION_TIMEOUT_MS: Type.Optional(Type.Number({ default: 10000 })),
         DISABLE_SIGNUP: Type.Optional(Type.Boolean({ default: true })),

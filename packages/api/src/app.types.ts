@@ -14,6 +14,7 @@ export interface AppConfig {
     JWT_SECRET: string;
     MONGODB_URI: string;
     MONGODB_SERVER_SELECTION_TIMEOUT_MS: number;
+    WHITE_LISTED_DOMAINS: string;
     NODE_ENV: string;
     PORT: string;
 }
