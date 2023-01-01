@@ -30,8 +30,8 @@ class StorageItemService {
         });
 
         const aggregate = await StorageItem.aggregate(stages);
-        const { result } = aggregate[0];
-
+        const [aggResult] = aggregate;
+        const result = aggResult ? aggResult.result : aggregate;
         debug(result);
 
         return result;
