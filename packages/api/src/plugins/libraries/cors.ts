@@ -18,13 +18,15 @@ export default fastifyPlugin<FastifyCorsOptions>(async (fastify) => {
                 return;
             }
 
-            let validHostsList: string[] = [];
+            let whiteListedDomainsList: string[] = [];
 
             if (config.WHITE_LISTED_DOMAINS && typeof config.WHITE_LISTED_DOMAINS === 'string') {
-                validHostsList = config.WHITE_LISTED_DOMAINS.split(',');
+                whiteListedDomainsList = config.WHITE_LISTED_DOMAINS.split(',');
             }
 
-            if (validHostsList.includes(hostname)) {
+            $debug('whiteListedDomainsList: %O', whiteListedDomainsList);
+
+            if (whiteListedDomainsList.includes(hostname)) {
                 cb(null, true);
                 return;
             }
