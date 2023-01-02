@@ -22,6 +22,13 @@
 		}
 	],
     "settings": {
+        "vitest.exclude": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/cypress/**",
+            "**/.{idea,git,cache,output,temp}/**",
+            "./packages/api/**"
+        ],
         "monorepoWorkspace.folders.custom": [
             {
                 "regex": "app1",

@@ -6,7 +6,7 @@ function reduceQueryParams(acc: any, [key, value]: [string, string]) {
     return `${acc}&${key}=${value}`;
 }
 
-interface RequestOptions {
+export interface RequestOptions {
     baseUrl?: string;
     body?: BodyInit | null;
     endpoint?: string;
@@ -15,10 +15,8 @@ interface RequestOptions {
     params?: any[];
 }
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
-
 async function request({
-    baseUrl = BASE_URL,
+    baseUrl = import.meta.env.VITE_API_BASE_URL || '',
     body, // empty body is ignored by fetch
     endpoint = '',
     method = 'GET',
@@ -37,11 +35,16 @@ async function request({
     };
 
     try {
-        const response = await fetch(fullUrl, {
+        const fetchInit: globalThis.RequestInit = {
             method,
             headers,
-            body,
-        });
+        };
+
+        if (body) {
+            fetchInit.body = body;
+        }
+
+        const response = await fetch(fullUrl, fetchInit);
 
         const responseBody = await response.json();
 
