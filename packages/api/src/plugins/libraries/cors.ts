@@ -1,11 +1,13 @@
 import cors, { FastifyCorsOptions } from '@fastify/cors';
 import debug from 'debug';
+import * as fp from 'lodash/fp';
 import fastifyPlugin from 'fastify-plugin';
+import { isLocalhost } from '../../lib/utils/url';
 
 const $debug = debug('app:debug:plugins:cors');
 
 export default fastifyPlugin<FastifyCorsOptions>(async (fastify) => {
-    const { config } = fastify;
+    const { config, isDevelopment } = fastify;
 
     await fastify.register(cors, {
         origin: (origin, cb) => {
@@ -13,20 +15,16 @@ export default fastifyPlugin<FastifyCorsOptions>(async (fastify) => {
 
             const hostname = new URL(origin).hostname;
 
-            if (hostname === 'localhost') {
+            if (isLocalhost(hostname) && isDevelopment) {
                 cb(null, true);
                 return;
             }
 
-            let whiteListedDomainsList: string[] = [];
+            const list: string[] = fp.split(',')(config.WHITE_LISTED_DOMAINS);
 
-            if (config.WHITE_LISTED_DOMAINS && typeof config.WHITE_LISTED_DOMAINS === 'string') {
-                whiteListedDomainsList = config.WHITE_LISTED_DOMAINS.split(',');
-            }
+            $debug('Whitelisted Domains list: %O', list);
 
-            $debug('whiteListedDomainsList: %O', whiteListedDomainsList);
-
-            if (whiteListedDomainsList.includes(hostname)) {
+            if (list.includes(hostname)) {
                 cb(null, true);
                 return;
             }
