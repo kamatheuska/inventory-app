@@ -26,10 +26,31 @@ export default fp<FastifyEnvOptions>(async (fastify) => {
     await fastify.register(Env, {
         schema,
     });
+
+    await fastify.decorate('isDevelopment', () => {
+        return process.env.NODE_ENV === 'development';
+    });
+
+    if (process.env.NODE_ENV === 'development') {
+        fastify.route({
+            url: '/plugins/env/config',
+            method: 'GET',
+            handler: async (req) => {
+                return {
+                    reqid: req.id,
+                    cors: {
+                        whitelisted: fastify.config.WHITE_LISTED_DOMAINS,
+                    },
+                    signupDisabled: !!fastify.config.DISABLE_SIGNUP,
+                };
+            },
+        });
+    }
 });
 
 declare module 'fastify' {
     export interface FastifyInstance {
         config: AppConfig;
+        isDevelopment: boolean;
     }
 }
