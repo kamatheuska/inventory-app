@@ -22,7 +22,7 @@ async function request({
     body, // empty body is ignored by fetch
     endpoint = '',
     method = 'GET',
-    headers,
+    headers: additionalHeaders,
     params,
 }: RequestOptions = {}): Promise<any> {
     let query;
@@ -32,13 +32,17 @@ async function request({
     }
 
     const fullUrl = query ? `${baseUrl}${endpoint}?${query}` : `${baseUrl}${endpoint}`;
-    const response = await fetch(fullUrl, {
-        method,
-        headers,
-        body,
-    });
+    const headers: HeadersInit = {
+        ...additionalHeaders,
+    };
 
     try {
+        const response = await fetch(fullUrl, {
+            method,
+            headers,
+            body,
+        });
+
         const responseBody = await response.json();
 
         if (!response.ok) {
@@ -47,10 +51,7 @@ async function request({
 
         return responseBody;
     } catch (error) {
-        if (!response.ok) {
-            throw new (ServerError as any)();
-        }
-
+        throw new (ServerError as any)({ error });
         return [];
     }
 }
