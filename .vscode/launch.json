@@ -5,8 +5,8 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach",
-      "port": 9229,
+      "name": "Attach to api on 9239",
+      "port": 9239,
       "request": "attach",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
@@ -18,7 +18,7 @@
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceRoot}/node_modules/.bin/fastify",
       "args": ["start", "-l", "info", "./dist/app.js"],
-      "preLaunchTask": "tsc: build - tsconfig.json",
+      "preLaunchTask": "ts build",
       "outFiles": ["${workspaceFolder}/dist/**/*.js"]
     }
   ]
