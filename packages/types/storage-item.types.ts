@@ -19,12 +19,13 @@ export interface StorageItemDTO {
   movements: MovementDTO[];
 };
 
-export interface StorageItemViewType {
-  _id: string,
-  amount: number;
-  ingredient: IngredientViewType,
-  movements: MovementViewType[];
+export interface StorageItemView {
+    _id: string,
+    amount: number;
+    ingredient: IngredientViewType,
+    movements: MovementViewType[];
 };
+
 
 
 export interface StorageItemModel extends Model<IStorageItem> {}

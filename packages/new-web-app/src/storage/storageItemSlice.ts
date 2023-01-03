@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../lib/store';
-import { StorageItemViewType } from '@inventory-app/types';
+import { StorageItemView } from '@inventory-app/types';
 
 export interface StorageItemState {
-    list: StorageItemViewType[];
-    current: StorageItemViewType | null;
+    list: StorageItemView[];
+    current: StorageItemView | null;
     isLoading: boolean;
 }
 
@@ -18,10 +18,10 @@ export const storageItemSlice = createSlice({
     name: 'storageItems',
     initialState,
     reducers: {
-        setList(state, action: PayloadAction<StorageItemViewType[]>) {
+        setList(state, action: PayloadAction<StorageItemView[]>) {
             state.list = action.payload;
         },
-        setCurrent(state, action: PayloadAction<StorageItemViewType>) {
+        setCurrent(state, action: PayloadAction<StorageItemView>) {
             state.current = action.payload;
         },
         startRequest(state) {

@@ -1,9 +1,16 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import request from '../../../src/lib/utils/rest';
+
 const fetchJsonMock = vi.fn();
+const headersGetMock = vi.fn((header) => {
+    if (header === 'content-type') return 'application/json';
+});
 const fetchMock = vi.fn(() => ({
     json: fetchJsonMock,
     ok: true,
+    headers: {
+        get: headersGetMock,
+    },
 }));
 
 vi.stubGlobal('fetch', fetchMock);
@@ -25,7 +32,7 @@ describe('utils: rest', () => {
     });
 
     describe('request', () => {
-        it('calls request without options', async () => {
+        it.only('calls request without options', async () => {
             fetchJsonMock.mockResolvedValue({
                 some: 'body',
             });

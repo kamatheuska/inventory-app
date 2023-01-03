@@ -15,7 +15,7 @@ export default function StorageItemView() {
             ) : (
                 !!storageItem && (
                     <div>
-                        <StorageItemForm {...storageItem} />
+                        <StorageItemForm {...storageItem} isNew={false} />
                     </div>
                 )
             )}

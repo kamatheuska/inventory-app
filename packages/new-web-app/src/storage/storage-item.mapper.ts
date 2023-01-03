@@ -1,6 +1,6 @@
-import { StorageItemViewType } from '@inventory-app/types';
+import { StorageItemView } from '@inventory-app/types';
 
-const mapper = (data: any): StorageItemViewType => ({
+const mapper = (data: any): StorageItemView => ({
     _id: data._id,
     amount: data.amount,
     ingredient: data.ingredient,

@@ -18,7 +18,6 @@ export const commonHTTPErrors = {
     UNAUTHORIZED: 403,
     INTERNAL_SERVER_ERROR: 500,
 };
-
 export const commonHTTPStatuses = {
     SUCCESS: 200,
 };

@@ -9,6 +9,13 @@
   gap: 10px;
 }
 
+.empty {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7em;
+}
 @media (min-width: 760px) {
   .grid {
     grid-template-columns: repeat(6,  var(--ingredient-card-height));

@@ -1,4 +1,4 @@
-import { MovementDTO, StorageItemViewType } from '@inventory-app/types';
+import { MovementDTO } from '@inventory-app/types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -8,9 +8,16 @@ import { addMovement } from '../../movements/movements.rest';
 import { finishRequest, startRequest } from '../storageItemSlice';
 import styles from './storage-item-form.module.css';
 
-type Props = StorageItemViewType;
+export interface StorageItemFormProps {
+    amount: number;
+    ingredient: {
+        _id: string;
+        measureUnit: string;
+    };
+    isNew: boolean;
+}
 
-export default function StorageItemForm({ amount, ingredient }: Props) {
+export default function StorageItemForm({ amount, ingredient, isNew }: StorageItemFormProps) {
     const { register, handleSubmit, setValue, getValues, watch } = useForm<{ amount: number }>();
     const [inputFontSize, setInputFontSize] = useState('calc(100vw / 2)');
     const dispatch = useDispatch();
@@ -36,9 +43,9 @@ export default function StorageItemForm({ amount, ingredient }: Props) {
         return () => subscription.unsubscribe();
     }, [watch, inputFontSize]);
 
-    const onSubmit = handleSubmit(async (data) => {
+    async function update(data) {
         const movementAmount = amount - data.amount;
-        if (movementAmount === 0) return;
+        if (movementAmount === 0 && !isNew) return;
 
         dispatch(startRequest());
 
@@ -56,6 +63,33 @@ export default function StorageItemForm({ amount, ingredient }: Props) {
         } finally {
             dispatch(finishRequest());
         }
+    }
+
+    async function create(data) {
+        const amount = data.amount;
+        dispatch(startRequest());
+
+        const movement: MovementDTO = {
+            amount: Math.abs(amount),
+            ingredient: ingredient._id,
+            operation: amount < 0 ? 'add' : 'remove',
+        };
+
+        try {
+            await addMovement(movement);
+            navigate('/storage');
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(finishRequest());
+        }
+    }
+
+    const onSubmit = handleSubmit(async (data) => {
+        if (isNew) {
+            return create(data);
+        }
+        update(data);
     });
 
     return (
